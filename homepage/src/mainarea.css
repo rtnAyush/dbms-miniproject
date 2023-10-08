@@ -1,0 +1,19 @@
+.main-container {
+    width: 80%;
+    padding: 20px;
+    min-height: 100vh;
+    background: blue;
+}
+
+.maintop {
+    width: 100%;
+    background: white;
+    padding: 10px 0px;
+}
+
+.maincontent {
+    margin-top: 10px;
+    background: white;
+    text-align: left;
+    padding: 10px 20px;
+}
