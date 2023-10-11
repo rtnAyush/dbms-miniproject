@@ -1,20 +1,41 @@
 .nav-container {
     width: 20%;
-    padding: 20px;
-    background: red;
+    background: #d7d7d7;
     min-height: 100vh;
 }
 
 .logo {
-    width: 100%;
+    width: 80%;
     background: white;
     padding: 10px 0px;
 }
 
 .options {
-    width: 100%;
-    margin-top: 20px;
+    max-width: 90%;
+    margin: 20px 0px 0px 20px;
     padding: 10px;
     background: white;
     border-radius: 8px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.mainUl {
+    text-align: left;
+}
+
+.mainUl > ul {
+    border: 1px solid black;
+}
+
+.mainUl li {
+    padding: 20px 40px;
+}
+
+.mainUl  span {
+    display: block;
+    padding: 20px;
+    border: 1px solid black;
 }
