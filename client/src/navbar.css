@@ -1,0 +1,24 @@
+.nav-container {
+    width: 20%;
+    background: #d7d7d7;
+    min-height: 100vh;
+}
+
+.logo {
+    width: 80%;
+    background: white;
+    padding: 10px 0px;
+    margin: 10px;
+}
+
+.options {
+    max-width: 90%;
+    margin: 20px 0px 0px 20px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+}
+
+.mainUl {
+    text-align: left;
+}
