@@ -1,0 +1,19 @@
+.gridItem {
+    width: 100%;
+    min-height: 120px;
+    background: red;
+    margin: 10px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 30% 60%;
+    justify-content: space-between;
+}
+
+.gridItemRight {
+    text-align: right;
+    color: white;
+}
+
+.gridItemRight p {
+    font-size: 20px;
+}
