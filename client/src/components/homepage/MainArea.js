@@ -1,4 +1,3 @@
-import React from 'react'
 import './mainarea.css'
 
 export default function Mainarea() {
