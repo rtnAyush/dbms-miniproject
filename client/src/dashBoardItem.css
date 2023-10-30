@@ -1,0 +1,14 @@
+li {
+    padding: 20px 40px;
+    list-style-type: none;
+}
+
+ul {
+    border: 1px solid black;
+}
+
+span {
+    display: block;
+    padding: 20px;
+    border: 1px solid black;
+}

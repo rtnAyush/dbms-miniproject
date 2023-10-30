@@ -8,6 +8,7 @@
     width: 80%;
     background: white;
     padding: 10px 0px;
+    margin: 10px;
 }
 
 .options {
@@ -18,24 +19,6 @@
     border-radius: 8px;
 }
 
-li {
-    list-style-type: none;
-}
-
 .mainUl {
     text-align: left;
-}
-
-.mainUl > ul {
-    border: 1px solid black;
-}
-
-.mainUl li {
-    padding: 20px 40px;
-}
-
-.mainUl  span {
-    display: block;
-    padding: 20px;
-    border: 1px solid black;
 }

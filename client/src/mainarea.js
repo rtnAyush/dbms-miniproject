@@ -5,7 +5,8 @@ export default function Mainarea() {
   return (
     <div className="main-container">
         <div className="maintop">
-            name and rollno:
+            <div className="left">Company Name</div>
+            <div className="right">Student Name</div>
         </div>
         <div className="maincontent">
             <h1 className="mainhead">Student Details</h1>

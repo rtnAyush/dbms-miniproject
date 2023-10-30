@@ -9,6 +9,19 @@
     width: 100%;
     background: white;
     padding: 10px 0px;
+    display: flex;
+}
+
+.left {
+    width: 50%;
+    text-align: left;
+    padding: 0px 20px;
+}
+
+.right {
+    width: 50%;
+    text-align: right;
+    padding: 0px 20px;
 }
 
 .maincontent {
