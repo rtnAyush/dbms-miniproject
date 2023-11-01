@@ -33,20 +33,31 @@ export function getDistance({
 	return 12742000 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371000 km
 }
 
-export function getMessCategory(currTime: string): boolean {
-	if (
-		(currTime >= "07:30:00" && currTime <= "09:30:00") ||
-		(currTime >= "12:30:00" && currTime <= "14:00:00") ||
-		(currTime >= "17:00:00" && currTime <= "18:00:00") ||
-		(currTime >= "19:30:00" && currTime <= "21:00:00")
-	) {
-		return true;
-	}
 
+export function getMessCategory(prevSavedTime: string): boolean {
+	const currTime = moment().format("HH:mm:ss");
+
+	if (currTime >= "07:30:00" && currTime <= "09:30:00") {
+		if (prevSavedTime >= "07:30:00" && prevSavedTime <= "09:30:00") {
+			return true;
+		}
+	} else if (currTime >= "12:30:00" && currTime <= "14:00:00") {
+		if (prevSavedTime >= "12:30:00" && prevSavedTime <= "14:00:00") {
+			return true;
+		}
+	} else if (currTime >= "17:00:00" && currTime <= "18:00:00") {
+		if (prevSavedTime >= "17:00:00" && prevSavedTime <= "18:00:00") {
+			return true;
+		}
+	} else if (currTime >= "19:30:00" && currTime <= "21:00:00") {
+		if (prevSavedTime >= "19:30:00" && prevSavedTime <= "21:00:00") {
+			return true;
+		}
+	}
 	return false;
 }
 
-// const moment = require("moment");
+
 // const XLSX = require("xlsx");
 
 // export function getTimeDifference(time1: string, time2: string) {

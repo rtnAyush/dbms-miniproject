@@ -1,6 +1,8 @@
-import { Request, Response, Router } from "express";
-import moment from "moment";
+import { Router, Request, Response } from "express";
 import { getDistance, getMessCategory } from "../controller/routes.controller";
+import prisma from "../utils/prisma";
+import moment from "moment";
+
 
 const routes = Router();
 
@@ -18,6 +20,7 @@ routes.post("/mark", async (req: Request, res: Response) => {
 			lon2: lon,
 		});
         
+
     const markedTime = await prisma.users.findUnique({
     	where: {
     		id: userId,
@@ -26,9 +29,11 @@ routes.post("/mark", async (req: Request, res: Response) => {
     
 		const lastMarkedTime = moment(markedTime).format("HH:mm:ss");
 
+
 		const isAlreadyMarked = getMessCategory(lastMarkedTime);
 
 		if (isAlreadyMarked) throw new Error("Already marked");
+
 
 		const date = new Date()
 		
