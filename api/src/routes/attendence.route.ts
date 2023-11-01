@@ -30,6 +30,13 @@ routes.post("/mark", async (req: Request, res: Response) => {
 
 		if (isAlreadyMarked) throw new Error("Already marked");
 
+		const date = new Date()
+		
+		const markedTimeUpdate = await prisma.users.update({
+			where: { id: userId },
+			data: { lastAttendence: date.now() },
+		})	
+
 		return res
 			.status(200)
 			.json({ error: false, msg: "Hello World! test", dist });
