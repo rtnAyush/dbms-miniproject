@@ -7,7 +7,7 @@ export default function Mainarea() {
     <div className="main-container">
         <div className="maintop">
             <div className="left">Company Name</div>
-            <div className="right"><i className="fa fa-user-circle" aria-hidden="true"></i>Student Name</div>
+            <div className="right"><i className="fa fa-user-circle" aria-hidden="true"></i>{" "}{" "}Student Name</div>
         </div>
         <div className="maincontent">
             <div className="mainhead">

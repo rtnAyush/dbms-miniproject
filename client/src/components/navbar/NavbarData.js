@@ -2,21 +2,21 @@ export const NavbarData = [
     {
         title: "Home",
         icon: "fa fa-home",
-        link: "/home"
+        link: "/"
     },
     {
         title: "Student",
         icon: "fa fa-graduation-cap",
-        link: "/students"
+        link: "/"
     },
     {
         title: "Teachers",
         icon: "fa fa-users",
-        link: "/teachers"
+        link: "/"
     },
     {
         title: "Contact Us",
         icon: "fa fa-envelope",
-        link: "/contact"
+        link: "/"
     }
 ];
