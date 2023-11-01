@@ -21,7 +21,7 @@ model Users {
 
 model DailyCount {
   id        Int      @id @default(autoincrement())
-  day       DateTime @default(now()) @db.Date
+  date      DateTime @default(now()) @db.Date
   breakfast Int      @default(0)
   lunch     Int      @default(0)
   snack     Int      @default(0)
@@ -29,13 +29,15 @@ model DailyCount {
 }
 
 model Complains {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  session   Sessions
-  upvote    Int?     @default(0)
-  downvote  Int?     @default(0)
-  author    Users?   @relation(fields: [authorId], references: [id])
-  authorId  Int?
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  session     Sessions
+  title       String
+  description String?
+  upvote      Int?     @default(0)
+  downvote    Int?     @default(0)
+  author      Users?   @relation(fields: [authorId], references: [id])
+  authorId    Int?
 }
 
 model FoodItems {
