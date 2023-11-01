@@ -15,8 +15,9 @@ model Users {
   name       String
   rollNumber Int?        @unique
   email      String      @unique
-  role       Role        @default(USER)
+  role       Role        @default(user)
   complains  Complains[]
+  votecalc   VoteCalc[]
 }
 
 model DailyCount {
@@ -29,15 +30,25 @@ model DailyCount {
 }
 
 model Complains {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
   session     Sessions
   title       String
   description String?
-  upvote      Int?     @default(0)
-  downvote    Int?     @default(0)
-  author      Users?   @relation(fields: [authorId], references: [id])
+  upvote      Int?       @default(0)
+  downvote    Int?       @default(0)
+  author      Users?     @relation(fields: [authorId], references: [id])
   authorId    Int?
+  votecalc    VoteCalc[]
+}
+
+model VoteCalc {
+  id         Int       @id @default(autoincrement())
+  vote       Vote      @default(up)
+  voter      Users     @relation(fields: [voterId], references: [id])
+  voterId    Int
+  complain   Complains @relation(fields: [complainId], references: [id])
+  complainId Int
 }
 
 model FoodItems {
@@ -54,19 +65,19 @@ model Menu {
 }
 
 enum Day {
-  Monday
-  Tuesday
-  Wednesday
-  Thursday
-  Friday
-  Saturday
-  Sunday
+  monday
+  tuesday
+  wednesday
+  thursday
+  friday
+  saturday
+  sunday
 }
 
 enum Role {
-  USER
-  ADMIN
-  SUPERADMIN
+  user
+  admin
+  superadmin
 }
 
 enum Sessions {
@@ -74,4 +85,9 @@ enum Sessions {
   lunch
   snack
   dinner
+}
+
+enum Vote {
+  up
+  down
 }
