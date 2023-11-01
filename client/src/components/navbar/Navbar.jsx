@@ -19,12 +19,12 @@ export default function Navbar() {
         <ul className='mainUl'>
           {NavbarData.map((val, key) => {
             return (
-              <Link to={val.link} key={key} style={{display: "block", textDecoration: "none", listStyleType: "none", padding: "20px 40px", fontSize: "25px"}} >
-                <a href='/' style={{display: "block", textDecoration: "none", listStyleType: "none", fontSize: "25px"}}>
+              <Link to={val.link} key={key} style={{display: "block", textDecoration: "none", listStyleType: "none", fontSize: "25px"}} >
+                <span style={{display: "block", textDecoration: "none", listStyleType: "none", fontSize: "25px", padding: "20px", color: "black"}}>
                 {"    "}
                 <i className={val.icon} aria-hidden='true'></i>
                 {val.title}
-                </a>
+                </span>
               </Link>
             )
           })}
