@@ -33,6 +33,7 @@ export function getDistance({
 	return 12742000 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371000 km
 }
 
+
 export function getMessCategory(prevSavedTime: string): boolean {
 	const currTime = moment().format("HH:mm:ss");
 
@@ -55,6 +56,7 @@ export function getMessCategory(prevSavedTime: string): boolean {
 	}
 	return false;
 }
+
 
 // const XLSX = require("xlsx");
 

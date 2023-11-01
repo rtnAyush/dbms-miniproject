@@ -3,6 +3,7 @@ import { getDistance, getMessCategory } from "../controller/routes.controller";
 import prisma from "../utils/prisma";
 import moment from "moment";
 
+
 const routes = Router();
 
 routes.post("/mark", async (req: Request, res: Response) => {
@@ -19,17 +20,31 @@ routes.post("/mark", async (req: Request, res: Response) => {
 			lon2: lon,
 		});
         
-		const lastMarkedTime = moment().format("HH:mm:ss");
+
+    const markedTime = await prisma.users.findUnique({
+    	where: {
+    		id: userId,
+    	},
+    })
+    
+		const lastMarkedTime = moment(markedTime).format("HH:mm:ss");
+
 
 		const isAlreadyMarked = getMessCategory(lastMarkedTime);
 
 		if (isAlreadyMarked) throw new Error("Already marked");
 
-		const user = await prisma.users.findMany();
+
+		const date = new Date()
+		
+		const markedTimeUpdate = await prisma.users.update({
+			where: { id: userId },
+			data: { lastAttendence: date.now() },
+		})	
 
 		return res
 			.status(200)
-			.json({ error: false, msg: "Hello World! test", dist, user });
+			.json({ error: false, msg: "Hello World! test", dist });
 	} catch (err: any) {
 		return res.status(400).json({ error: true, msg: err?.message });
 	}
