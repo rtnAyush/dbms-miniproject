@@ -9,6 +9,7 @@ api/.env
 api/dist
 .env
 api/prisma/.env
+api/prisma/migrations
 
 deploy.sh
 app.config.json
