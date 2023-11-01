@@ -5,6 +5,7 @@ import NotFound from './components/not-found/NotFound';
 import Navbar from './components/navbar/Navbar';
 import MainArea from './components/homepage/MainArea';
 import Login from './components/login/Login';
+import AttendenceMarker from './components/attendence-marker/AttendenceMarker';
 
 function App() {
   return (
@@ -16,11 +17,9 @@ function App() {
             <MainArea />
           </>
         } />
-        <Route path='/main' element={
-          <>
-            <Login />
-          </>
-        } />
+        <Route path='/login' element={<Login />} />
+        <Route path='/attendence' element={<AttendenceMarker />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
 
