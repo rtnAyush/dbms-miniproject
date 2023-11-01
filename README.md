@@ -1,1 +1,2 @@
-# dbms-miniproject
+# Mess Buddy
+## DBMS-Miniproject
