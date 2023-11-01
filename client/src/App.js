@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import NotFound from './components/not-found/NotFound';
 import Navbar from './components/navbar/Navbar';
 import MainArea from './components/homepage/MainArea';
+import TokenGeneration from './components/tokengen/TokenGeneration';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           </>
         } />
         <Route path="*" element={<NotFound />} />
+        <Route path="/tokengen" element={<TokenGeneration />} />
       </Routes>
 
     </div>
