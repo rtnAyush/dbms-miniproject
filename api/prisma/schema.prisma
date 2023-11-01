@@ -9,3 +9,67 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Users {
+  id         Int         @id @default(autoincrement())
+  name       String
+  rollNumber Int?        @unique
+  email      String      @unique
+  role       Role        @default(USER)
+  complains  Complains[]
+}
+
+model DailyCount {
+  id        Int      @id @default(autoincrement())
+  day       DateTime @default(now()) @db.Date
+  breakfast Int      @default(0)
+  lunch     Int      @default(0)
+  snack     Int      @default(0)
+  dinner    Int      @default(0)
+}
+
+model Complains {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  session   Sessions
+  upvote    Int?     @default(0)
+  downvote  Int?     @default(0)
+  author    Users?   @relation(fields: [authorId], references: [id])
+  authorId  Int?
+}
+
+model FoodItems {
+  id   Int    @id @default(autoincrement())
+  name String
+  menu Menu[]
+}
+
+model Menu {
+  id     Int       @id @default(autoincrement())
+  day    Day
+  food   FoodItems @relation(fields: [foodId], references: [id])
+  foodId Int
+}
+
+enum Day {
+  Monday
+  Tuesday
+  Wednesday
+  Thursday
+  Friday
+  Saturday
+  Sunday
+}
+
+enum Role {
+  USER
+  ADMIN
+  SUPERADMIN
+}
+
+enum Sessions {
+  breakfast
+  lunch
+  snack
+  dinner
+}

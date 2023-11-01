@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container{
+    padding: 10px 10px;
+    /* background-color: red; */
+    background-color: #B2C8BA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-between; */
+    min-height: 700px;
+    min-width: 400px;
+}
+
+.login-container input{
+    display: block;
+    border-radius: 4px;
+    border: none;
+    padding: 8px;
+    font-size: 90%;
+    width: 90%;
+    margin: 15px 0;
+    outline: none;
+    height: 32px;
+}
+
+.login-container input:focus{
+    outline: 3px solid skyblue;
+}
+
+.login-fill-box{
+    width: 95%;
+    margin: 30px 5%;
+}
+
+.login-fill-box h2{
+    text-align: center;
+}
+
+.actual-fill-box{
+    margin: 20px auto;
+}
+
+.login-btn{
+    margin-inline: auto;
+    width: 160px;
+    margin-block: 10px;
+}
+
+.login-alt-links{
+    width: 95%;
+}
+
+.login-alt-links h5{
+    /* font-size: 60%; */
+    text-align: center;
+}
+
+.login-alt-links .links-cont{
+    width: 30%;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.login-alt-links .links-cont i{
+    font-size: 22px;
+    color: white;
+}
+
+.sign-up-btn{
+    padding-inline: 30px;
+    padding-block: 10px;
+    margin-block: 10px;
+}

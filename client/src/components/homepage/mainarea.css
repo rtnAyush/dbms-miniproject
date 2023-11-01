@@ -2,31 +2,55 @@
     width: 80%;
     padding: 20px;
     min-height: 100vh;
-    background: #d7d7d7;
+    background: #f1f1f1;
 }
 
 .maintop {
     width: 100%;
-    background: white;
     padding: 10px 0px;
     display: flex;
+}
+
+.mainhead {
+    margin: 20px;
+    padding: 0  20px 20px 0;
+}
+
+.mainhead h1 {
+    margin: 20px 0;
 }
 
 .left {
     width: 50%;
     text-align: left;
     padding: 0px 20px;
+    font-size: 25px;
 }
 
 .right {
     width: 50%;
     text-align: right;
     padding: 0px 20px;
+    font-size: 20px;
 }
 
 .maincontent {
     margin-top: 10px;
-    background: white;
     text-align: left;
     padding: 10px 20px;
+}
+
+.somegrid {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    justify-content: space-around;
+}
+
+@media only screen and (max-width: 1260px) {
+    .somegrid {
+        grid-template-columns: 45% 45%;
+    }
 }
