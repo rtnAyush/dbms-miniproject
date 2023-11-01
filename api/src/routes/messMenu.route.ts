@@ -12,9 +12,11 @@ routes
 			if (!day) throw new Error("Missing Day");
 			if (!session) throw new Error("Missing session");
 
-			// dbms logic for saving into items table or fetching saved ids and then into messMenu table
+			const menuToday = await prisma.Menu.findMany({
+				where: { session: session },
+			})
 
-			return res.status(200).json({ error: false, msg: "Success" });
+			return res.status(200).json({ error: false, msg: "Success", data: menuToday });
 		} catch (err: any) {
 			return res.status(400).json({ error: true, msg: err?.message });
 		}
@@ -28,6 +30,37 @@ routes
 			if (!session) throw new Error("Missing Session");
 
 			// dbms logic for saving into items table or fetching saved ids and then into messMenu table
+			const foodExists = await prisma.FoodItem.findUnique({
+				select: { id },
+				where: { name: name },
+			})
+
+			if(foodExists == null)
+			{
+				const foodId = await prisma.FoodItem.create({
+					data: {
+						name: name
+					},
+					select: { id },
+				})
+
+				const addMenu = await prisma.Menu.create({
+					data: {
+						day: day,
+						session: session,
+						foodId: foodId
+					},
+				})
+			}
+			else {
+				const addMenu = await prisma.Menu.create({
+					data: {
+						day: day,
+						session: session,
+						foodId: foodId
+					},
+				})
+			}
 
 			return res.status(200).json({ error: false, msg: "Success" });
 		} catch (err: any) {
