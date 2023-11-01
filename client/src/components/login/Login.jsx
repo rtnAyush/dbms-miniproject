@@ -1,45 +1,35 @@
-import React from 'react'
-import './Login.css'
+import { useEffect } from 'react';
+import { gapi } from 'gapi-script';
 
-const Login = () => {
+import LoginBtn from './LoginBtn';
+import LogoutBtn from './LogoutBtn';
 
-    // const signUpHandler = () => {
-    //     setMode(props.mode) = false;
-    // }
+const clientID = "662850674072-36q49apv7ns68lui53rhj0khj1rlj4sd.apps.googleusercontent.com";
 
-    return (
-        <div className='login-container'>
-            <div className="login-fill-box">
-                <h2>Login</h2>
+function LoginForm() {
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientID: clientID, 
+        scope: ""
+      });
+    }
 
-                <div className="actual-fill-box">
-                    <label for="uname"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="uname" required></input>
+    gapi.load('client:auth2', start);
+  }, []);
 
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required></input>
-                </div>
-                <button className='btn btn-primary login-btn' type="submit">Login</button>
+  // var accessToken = gapi.auth.getToken().access_token;
 
-            </div>
-
-            <div className="login-alt-links">
-                <h5>Or Login Using</h5>
-                <div className="links-cont">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-google"></i>
-                </div>
-
-            </div>
-
-            <div className="signup-btn">
-                <button type="submit" className='btn btn-primary sign-up-btn' >Sign Up</button>
-            </div>
-
-            {/* onClick={signUpHandler} */}
-        </div>
-    )
+  return (
+    <div className="App">
+      <LoginBtn />
+      <LogoutBtn />
+    </div>
+  );
 }
 
-export default Login
+
+
+
+
+export default LoginForm;
