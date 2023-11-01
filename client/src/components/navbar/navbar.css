@@ -22,3 +22,9 @@
 .mainUl {
     text-align: left;
 }
+
+@media only screen and (max-width: 1150px) {
+    .nav-container {
+        width: 250px;
+    }
+}
