@@ -1,15 +1,25 @@
 import express from "express";
-
-const app = express();
-
 import cors from "cors";
 
-app.use(cors());
-app.use(express.json());
+import attendenceRoutes from "./routes/attendence.route";
+import menuRoutes from "./routes/messMenu.route";
+import userRoutes from "./routes/user.route";
+import complainRoutes from "./routes/complains.route";
 
+
+const app = express();
 const port = process.env.PORT || 8080;
 
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`);
-});
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
+app.use("/api/attendence", attendenceRoutes);
+app.use("/api/menu", menuRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/complains", complainRoutes);
+
+
+app.listen(port, () => {
+	console.log(`Server listening at http://localhost:${port}`);
+});
