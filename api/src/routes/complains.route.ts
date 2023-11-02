@@ -113,6 +113,7 @@ routes
 				},
 				data: updateVal,
 			});
+<<<<<<< HEAD
 
 			return res
 				.status(200)
@@ -154,5 +155,49 @@ routes
 			return res.status(400).json({ error: true, msg: err?.message });
 		}
 	});
+=======
+
+			return res
+				.status(200)
+				.json({ error: false, msg: "Success", data: updateVal });
+		} catch (err: any) {
+			return res.status(400).json({ error: true, msg: err?.message });
+		}
+	})
+	.delete(async (req: Request, res: Response) => {
+		const { complainId } = req.params;
+
+		try {
+			const findComplain = await prisma.complains.findUnique({
+				where: { id: parseInt(complainId) },
+			});
+
+			const updateInDeletedComplain =
+				await prisma.complainsDeleted.create({
+					data: {
+						createdAt: findComplain.createdAt,
+						session: findComplain.session,
+						title: findComplain.title,
+						description: findComplain.description,
+						upvote: findComplain.upvote,
+						downvote: findComplain.downvote,
+					},
+				});
+
+			const deleteFromComplain = await prisma.complains.delete({
+				where: { id: parseInt(complainId) },
+			});
+
+			return res.status(200).json({
+				error: false,
+				msg: "Success",
+				data: deleteFromComplain,
+			});
+		} catch (err: any) {
+			return res.status(400).json({ error: true, msg: err?.message });
+		}
+	});
+
+>>>>>>> main
 
 export default routes;
