@@ -26,6 +26,7 @@ model Users {
   lastAttendence DateTime    @default(now())
   complains      Complains[]
   votecalc       VoteCalc[]
+  password       String?
 }
 
 model DailyCount {
@@ -57,6 +58,8 @@ model VoteCalc {
   voterId    Int
   complain   Complains @relation(fields: [complainId], references: [id])
   complainId Int
+
+  @@unique([voterId, complainId])
 }
 
 model FoodItems {

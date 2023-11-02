@@ -8,8 +8,8 @@ routes
 	.get(async (req: Request, res: Response) => {
 		let filter = {};
 		let sortOptions = {};
-		const { userId1, date, upvote, downvote } = req.body;
-		let userId = parseInt(userId1);
+		const { date, upvote, downvote, sort } = req.query;
+		let userId = parseInt(req.query.userId1 as string);
 
 		try {
 			if (userId) {
@@ -22,20 +22,22 @@ routes
 			if (upvote && downvote) {
 				throw new Error("Application of multiple sorting options.");
 			}
-			if (upvote) {
+			if (sort === "upvote") {
 				sortOptions["upvote"] = "desc";
 			}
-			if (downvote) {
+			if (sort === "downvote") {
 				sortOptions["downvote"] = "desc";
+			}
+			if (sort === "createdAt") {
+				sortOptions["createdAt"] = "desc";
 			}
 
 			const complains = await prisma.complains.findMany({
 				where: filter,
-				select: {
-					title: true,
-					description: true,
-				},
 				orderBy: sortOptions,
+				include: {
+					author: true,
+				},
 			});
 
 			return res
@@ -80,13 +82,31 @@ routes
 			if (!userId) throw new Error("Missing userId");
 			if (!complainId) throw new Error("Missing complainId");
 
-			const voterUpdate = await prisma.voteCalc.create({
-				data: {
+			const alreadyVoted = await prisma.voteCalc.findFirst({
+				where: {
 					voterId: userId,
 					complainId: complainId,
-					vote: vote,
 				},
 			});
+			console.log(alreadyVoted);
+
+			let voted = false;
+			let delVoteId = 0;
+			if (alreadyVoted) {
+				voted = true;
+				delVoteId = alreadyVoted.id;
+			}
+			console.log(delVoteId);
+
+			if (!voted) {
+				const voterUpdate = await prisma.voteCalc.create({
+					data: {
+						voterId: userId,
+						complainId: complainId,
+						vote: vote,
+					},
+				});
+			}
 
 			let updateVal = {};
 			if (vote == "up") {
@@ -96,8 +116,15 @@ routes
 					},
 					select: {
 						upvote: true,
+						downvote: true,
 					},
 				});
+				if (voted == true) {
+					if (alreadyVoted.vote == "up") {
+						throw new Error("Already upvoted");
+					}
+					updateVal["downvote"] = vo.downvote - 1;
+				}
 				updateVal["upvote"] = vo.upvote + 1;
 			} else if (vote == "down") {
 				const vo = await prisma.complains.findUnique({
@@ -105,10 +132,22 @@ routes
 						id: complainId,
 					},
 					select: {
+						upvote: true,
 						downvote: true,
 					},
 				});
+				if (voted == true) {
+					if (alreadyVoted.vote == "down") {
+						throw new Error("Already downvoted");
+					}
+					updateVal["upvote"] = vo.upvote - 1;
+				}
 				updateVal["downvote"] = vo.downvote + 1;
+			}
+			if (voted == true) {
+				const deleteVote = await prisma.voteCalc.delete({
+					where: { id: delVoteId },
+				});
 			}
 
 			const voteAdd = await prisma.complains.update({
@@ -122,6 +161,7 @@ routes
 				.status(200)
 				.json({ error: false, msg: "Success", data: updateVal });
 		} catch (err: any) {
+			console.log(err);
 			return res.status(400).json({ error: true, msg: err?.message });
 		}
 	})

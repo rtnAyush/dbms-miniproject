@@ -3,7 +3,7 @@ import Complain from './Complain'
 import useAxios from '../../hooks/useAxios'
 import './complains.css';
 import { Button, Modal, Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+
 
 
 export default function Complains() {
@@ -11,13 +11,11 @@ export default function Complains() {
     const [complains, setComplains] = useState([]);
     const [errMsg, setErrMsg] = useState(false);
     const [show, setShow] = useState(false);
-    const navigate = useNavigate();
 
     const [sort, setSort] = useState('createdAt');
 
     useEffect(() => {
         getComplains(sort);
-        console.log(sort);
         // eslint-disable-next-line
     }, [sort]);
 
@@ -25,26 +23,25 @@ export default function Complains() {
         try {
             const res = await api.get(`/complains?sort=${sort}`);
             setComplains(res.data?.data);
-            console.log(res.data?.data);
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
 
     async function handleComplain(e) {
-        // e.preventDefault();
+        e.preventDefault();
         const formData = new FormData(e.target);
         try {
             const body = {
                 title: formData.get('title'),
                 desc: formData.get('description'),
                 session: formData.get('session'),
-                userId1: 1
+                userId1: localStorage.getItem('userId')
             }
             const res = await api.post('/complains', body);
             setErrMsg(res.data?.data?.error);
             setShow(false);
-            navigate('/complaints');
+            window.location.reload();
         } catch (error) {
             console.log(error);
             setErrMsg(true)
