@@ -5,6 +5,7 @@ import useAxios from "../../hooks/useAxios";
 export default function AddMenuItem() {
     const api = useAxios();
     const [show, setShow] = useState(false);
+    // eslint-disable-next-line
     const [day, setDay] = useState("");
     const sessions = ["breakfast", "lunch", "snack", "dinner"];
     const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
@@ -19,76 +20,76 @@ export default function AddMenuItem() {
     ]);
 
     function loadTable(arr) {
-        let newTable = [[...tabledata[0]], [...tabledata[1]], [...tabledata[2]], [...tabledata[3]], [...tabledata[4]], [...tabledata[5]], [...tabledata[6]] ]
-        for(let i = 0; i < arr.length; i++) {
-            if(arr[i].day === days[0]) {
-                if(arr[i].session === sessions[0]) {
+        let newTable = [[...tabledata[0]], [...tabledata[1]], [...tabledata[2]], [...tabledata[3]], [...tabledata[4]], [...tabledata[5]], [...tabledata[6]]]
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].day === days[0]) {
+                if (arr[i].session === sessions[0]) {
                     newTable[0][0] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[1]) {
+                } else if (arr[i].session === sessions[1]) {
                     newTable[0][1] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[2]) {
+                } else if (arr[i].session === sessions[2]) {
                     newTable[0][2] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[3]) {
+                } else if (arr[i].session === sessions[3]) {
                     newTable[0][3] += ` ${arr[i].food.name}`;
                 }
-            } else if(arr[i].day === days[1]) {
-                if(arr[i].session === sessions[0]) {
+            } else if (arr[i].day === days[1]) {
+                if (arr[i].session === sessions[0]) {
                     newTable[1][0] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[1]) {
+                } else if (arr[i].session === sessions[1]) {
                     newTable[1][1] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[2]) {
+                } else if (arr[i].session === sessions[2]) {
                     newTable[1][2] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[3]) {
+                } else if (arr[i].session === sessions[3]) {
                     newTable[1][3] += ` ${arr[i].food.name}`;
                 }
-            } else if(arr[i].day === days[2]) {
-                if(arr[i].session === sessions[0]) {
+            } else if (arr[i].day === days[2]) {
+                if (arr[i].session === sessions[0]) {
                     newTable[2][0] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[1]) {
+                } else if (arr[i].session === sessions[1]) {
                     newTable[2][1] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[2]) {
+                } else if (arr[i].session === sessions[2]) {
                     newTable[2][2] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[3]) {
+                } else if (arr[i].session === sessions[3]) {
                     newTable[2][3] += ` ${arr[i].food.name}`;
                 }
-            } else if(arr[i].day === days[3]) {
-                if(arr[i].session === sessions[0]) {
+            } else if (arr[i].day === days[3]) {
+                if (arr[i].session === sessions[0]) {
                     newTable[3][0] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[1]) {
+                } else if (arr[i].session === sessions[1]) {
                     newTable[3][1] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[2]) {
+                } else if (arr[i].session === sessions[2]) {
                     newTable[3][2] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[3]) {
+                } else if (arr[i].session === sessions[3]) {
                     newTable[3][3] += ` ${arr[i].food.name}`;
                 }
-            } else if(arr[i].day === days[4]) {
-                if(arr[i].session === sessions[0]) {
+            } else if (arr[i].day === days[4]) {
+                if (arr[i].session === sessions[0]) {
                     newTable[4][0] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[1]) {
+                } else if (arr[i].session === sessions[1]) {
                     newTable[4][1] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[2]) {
+                } else if (arr[i].session === sessions[2]) {
                     newTable[4][2] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[3]) {
+                } else if (arr[i].session === sessions[3]) {
                     newTable[4][3] += ` ${arr[i].food.name}`;
                 }
-            } else if(arr[i].day === days[5]) {
-                if(arr[i].session === sessions[0]) {
+            } else if (arr[i].day === days[5]) {
+                if (arr[i].session === sessions[0]) {
                     newTable[5][0] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[1]) {
+                } else if (arr[i].session === sessions[1]) {
                     newTable[5][1] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[2]) {
+                } else if (arr[i].session === sessions[2]) {
                     newTable[5][2] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[3]) {
+                } else if (arr[i].session === sessions[3]) {
                     newTable[5][3] += ` ${arr[i].food.name}`;
                 }
-            } else if(arr[i].day === days[6]) {
-                if(arr[i].session === sessions[0]) {
+            } else if (arr[i].day === days[6]) {
+                if (arr[i].session === sessions[0]) {
                     newTable[6][0] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[1]) {
+                } else if (arr[i].session === sessions[1]) {
                     newTable[6][1] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[2]) {
+                } else if (arr[i].session === sessions[2]) {
                     newTable[6][2] += ` ${arr[i].food.name}`;
-                } else if(arr[i].session === sessions[3]) {
+                } else if (arr[i].session === sessions[3]) {
                     newTable[6][3] += ` ${arr[i].food.name}`;
                 }
             }
@@ -99,20 +100,20 @@ export default function AddMenuItem() {
     function CreateTable() {
         return (
             <>
-            {tabledata.map((c, i) => {
-                return (
-                    <tr key={i}>
-                        <td key={`${i}5`}>{days[i]}</td>
-                        {c.map((el, j) => {
-                            return (
-                            <td key={`${i}${j}`}>{el}</td>
-                            )
-                        }
-                        )}
-                    </tr>
-                )
-            }
-            )}
+                {tabledata.map((c, i) => {
+                    return (
+                        <tr key={i}>
+                            <td key={`${i}5`}>{days[i]}</td>
+                            {c.map((el, j) => {
+                                return (
+                                    <td key={`${i}${j}`}>{el}</td>
+                                )
+                            }
+                            )}
+                        </tr>
+                    )
+                }
+                )}
             </>
         )
     }
@@ -152,7 +153,7 @@ export default function AddMenuItem() {
     }
     return (
         <>
-            <div style={{margin: "10px 10px 10px auto"}}>
+            <div style={{ margin: "10px 10px 10px auto" }}>
                 <Button onClick={() => setShow(true)}>Add menu</Button>
             </div>
             <Modal show={show} onHide={() => setShow(false)}>
@@ -192,16 +193,9 @@ export default function AddMenuItem() {
                             placeholder="Enter Item Name"
                         />
                         <Form.Control type="submit" value="submit" />
+                        <Form.Control onClick={() => setShow(false)} type="button" value="Close" />
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShow(false)}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={() => setShow(false)}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
             </Modal>
             <div className="table2">
                 <div className="tablecontainer2">
@@ -216,9 +210,9 @@ export default function AddMenuItem() {
                             </tr>
                         </thead>
                         <tbody className='tb'>
-                        <CreateTable />
+                            <CreateTable />
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
             </div>
         </>

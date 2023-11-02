@@ -1,14 +1,15 @@
-
 import { googleLogout } from '@react-oauth/google';
 import Button from 'react-bootstrap/Button';
+import { setLogout } from '../../state';
+import { useDispatch } from 'react-redux';
 
-function LogoutBtn(props) {
+function LogoutBtn() {
+  const dispatch = useDispatch();
+
   const handleGoogleLogout = () => {
     console.log('dropdown clicked')
     googleLogout();
-    localStorage.setItem('isLogged', false);
-    localStorage.removeItem('profileData');
-
+    dispatch(setLogout());
   }
 
   return (
