@@ -11,6 +11,7 @@ import Nav from './components/login/Nav';
 import Attendence from './components/attendence-marker/Attendence';
 import Menu from './components/showmenu/Menu';
 import { useState } from 'react';
+import Complains from './components/complain/Complains';
 
 
 
@@ -27,7 +28,8 @@ function App() {
           </>
         } />
         {/* <Route path='/login' element={<Login />} /> */}
-        <Route path='/attendance' element={<AttendenceMarker />} />\
+        <Route path='/attendance' element={<AttendenceMarker />} />
+        <Route path='/complaints' element={<Complains />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
