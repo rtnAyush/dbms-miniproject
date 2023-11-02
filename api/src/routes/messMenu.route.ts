@@ -12,11 +12,13 @@ routes
 			if (!day) throw new Error("Missing Day");
 			if (!session) throw new Error("Missing session");
 
+
 			const menuToday = await prisma.Menu.findMany({
 				where: { session: session },
 			})
 
 			return res.status(200).json({ error: false, msg: "Success", data: menuToday });
+
 		} catch (err: any) {
 			return res.status(400).json({ error: true, msg: err?.message });
 		}
@@ -29,7 +31,7 @@ routes
 			if (!name) throw new Error("Missing Name");
 			if (!session) throw new Error("Missing Session");
 
-			// dbms logic for saving into items table or fetching saved ids and then into messMenu table
+
 			const foodExists = await prisma.FoodItem.findUnique({
 				select: { id },
 				where: { name: name },
