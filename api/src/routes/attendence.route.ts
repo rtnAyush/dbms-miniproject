@@ -21,7 +21,7 @@ routes.post("/mark", async (req: Request, res: Response) => {
 		});
         
 
-    const markedTime = await prisma.users.findUnique({
+    const markedTime = await prisma.Users.findUnique({
     	where: {
     		id: userId,
     	},
@@ -37,7 +37,7 @@ routes.post("/mark", async (req: Request, res: Response) => {
 
 		const date = new Date()
 		
-		const markedTimeUpdate = await prisma.users.update({
+		const markedTimeUpdate = await prisma.Users.update({
 			where: { id: userId },
 			data: { lastAttendence: date.now() },
 		})	
