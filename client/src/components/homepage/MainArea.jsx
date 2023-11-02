@@ -1,13 +1,17 @@
 import React from 'react'
 import './mainarea.css'
 import DashboardGridItem from './dashboardGridItem';
+// import { profileData } from '../login/Nav';
 
 export default function Mainarea() {
+  // console.log(profileData.profileName, " hello -> bhai")
   return (
     <div className="main-container">
         <div className="maintop">
             <div className="left">Company Name</div>
-            <div className="right"><i className="fa fa-user-circle" aria-hidden="true"></i>{" "}{" "}Student Name</div>
+            <div className="right"><i className="fa fa-user-circle" aria-hidden="true"></i>{" "}{" "}{
+            "Student_Name"}</div>
+            {/* profileData.profileName.length? profileData.profileName : */}
         </div>
         <div className="maincontent">
             <div className="mainhead">
