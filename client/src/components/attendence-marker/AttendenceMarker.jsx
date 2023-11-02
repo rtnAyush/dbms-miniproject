@@ -5,6 +5,12 @@ import useGeoLocation from '../../hooks/useLocation'
 import {Container, Button, Image, Modal } from 'react-bootstrap';
 import useAxios from '../../hooks/useAxios';
 import Clock from './Clock';
+import { Link } from 'react-router-dom';
+
+const options = { day: '2-digit', month: 'short', year: 'numeric' };
+const formattedDate = new Intl.DateTimeFormat('en-US', options).format(new Date());
+
+
 
 export default function AttendenceMarker() {
 
@@ -55,7 +61,8 @@ export default function AttendenceMarker() {
                     <h1 className='header' style={{color: "white"}}>Mark Your Attendance</h1>
 
                     <h5 className="sub__name" style={{color: "white"}}>
-                        Date: {new Date().toLocaleDateString()}
+                        {/* Date: {new Date().toDateString()} */}
+                        Date: {formattedDate}
                     </h5>
                     <h5 className="timings" style={{color: "white"}}>
                         Time: {<Clock />}
@@ -66,17 +73,17 @@ export default function AttendenceMarker() {
 
                 <section className="mark__btns" style={{color: "white"}}>
                     <Button
-                        variant="primary"
+                        variant="light"
                         onClick={handleAttendence}
                     >
                         Present
                     </Button>
 
 
-                    <Button
+                    {/* <Button
                         variant="dark" >
                         Absent
-                    </Button>
+                    </Button> */}
                 </section>
 
 
@@ -95,9 +102,11 @@ export default function AttendenceMarker() {
                          {msg}
                     </Modal.Body>
                     <Modal.Footer className='modal-footer-cont'>
+                    <Link to="/">
                         <Button size='lg' variant="secondary" onClick={() => setShow(false)}>
                             Close
                         </Button>
+                        </Link>
                         {/* <Button variant="primary" onClick={() => setShow(false)}>
                             Save Changes
                         </Button> */}

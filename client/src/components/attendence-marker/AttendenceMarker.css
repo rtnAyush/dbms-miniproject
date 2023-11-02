@@ -5,6 +5,10 @@
     background-color: #427D9D;
     padding: 10px;
     padding-block: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .timings {

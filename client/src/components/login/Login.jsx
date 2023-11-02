@@ -46,7 +46,7 @@ function LoginForm() {
         isLoggedIn ?
           <>
             <Dropdown>
-              <Dropdown.Toggle  id="dropdown-basic">
+              <Dropdown.Toggle variant='light'  id="dropdown-basic">
                 <div className="profile" ><img src={obj.profileImage} alt="" /></div>
               </Dropdown.Toggle>
 
