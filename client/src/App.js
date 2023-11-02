@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 
@@ -18,13 +19,11 @@ function App() {
         <Route path="/" element={
           <>
           <div className='dash-cont'>
-            {/* <Navbar /> */}
             <MainArea />
             </div>
           </>
         } />
-        <Route path='/login' element={<Login />} />
-        {/* <Route path='/nav' element={<Nav />} /> */}
+        {/* <Route path='/login' element={<Login />} /> */}
         <Route path='/attendence' element={<AttendenceMarker />} />
         <Route path="/att" element={<Attendence />} />
 
