@@ -31,7 +31,7 @@ function LoginForm() {
     setObj(temp)
   }
 
-  const [isLoggedIn, setLoggedIn] = useState(true);
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
 
   const falseMake = () => {

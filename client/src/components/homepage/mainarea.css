@@ -1,8 +1,9 @@
 .main-container {
     width: 100%;
-    padding: 20px;
-    min-height: 100vh;
+    
+    max-height: 100vh;
     background: #f1f1f1;
+    /* background-color: #DFDFDE; */
 }
 
 .maintop {
@@ -35,15 +36,12 @@
 }
 
 .maincontent {
-    margin-top: 10px;
     text-align: left;
-    padding: 10px 20px;
+    
 }
 
 .somegrid {
     background: white;
-    padding: 20px;
-    margin: 20px 0;
     display: grid;
     grid-template-columns: 30% 30% 30%;
     justify-content: space-around;
