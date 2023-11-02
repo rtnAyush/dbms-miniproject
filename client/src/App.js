@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import NotFound from './components/not-found/NotFound';
 // import Navbar from './components/navbar/Navbar';
@@ -17,15 +17,29 @@ import Users from './components/users/Users';
 // import Attendence from './components/attendence-marker/Attendence';
 
 import HomepageLogo from './components/homepage/HomepageLogo';
+import LoginPage from './components/login/LoginPage';
+import { useEffect } from 'react';
 // import Menu from './components/showmenu/Menu';
 // import { useState } from 'react';
 
 
 
 function App() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("isLogged")) {
+      navigate('/login')
+    }
+  }, [localStorage.getItem("isLogged")])
+
   return (
     <div className="App">
-      <Nav />
+      {
+        !location.pathname.includes("/login") &&
+        <Nav />
+      }
       <Routes>
         <Route path="/" element={
           <>
@@ -38,14 +52,14 @@ function App() {
             </div>
           </>
         } />
-        {/* <Route path='/login' element={<Login />} /> */}
+        <Route path='/login' element={<LoginPage />} />
         <Route path='/attendence' element={<AttendenceMarker />} />
         <Route path="/att" element={<Attendence />} />
-        <Route path='/admin' element={<Admin />} /> 
+        <Route path='/admin' element={<Admin />} />
         <Route path='/menu' element={<Menu />} />
         <Route path='/admin/menu' element={<Admin />} />
         <Route path='/admin/users' element={<Users />} />
-        <Route path="*" element={<NotFound />} /> 
+        <Route path="*" element={<NotFound />} />
 
         <Route path='/attendance' element={<AttendenceMarker />} />
 
