@@ -22,11 +22,13 @@ export default function Complain({ complain }) {
 
             if (vote === 'up') {
                 setUp((prev) => prev + 1);
-            } else {
                 setDown((prev) => prev - 1);
+            } else {
+                setUp((prev) => prev - 1);
+                setDown((prev) => prev + 1);
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
 

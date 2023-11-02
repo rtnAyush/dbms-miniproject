@@ -14,7 +14,7 @@ a {
 } */
 
 
-.dash-con{
+.dash-con {
 
   display: flex;
   align-items: center;
@@ -25,9 +25,9 @@ a {
 
 
 
-.container {
+.container2 {
   background-color: #FEFBF6;
-  width: 100vw;
+  /* width: 100vw; */
   display: flex;
   align-items: center;
   justify-content: center;

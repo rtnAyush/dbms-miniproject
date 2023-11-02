@@ -1,24 +1,20 @@
 import { Form, Button } from 'react-bootstrap';
 import "./LoginPage.css"
 import SignInBtn from './SignInBtn';
-const LoginPage = (props) => {
+const LoginPage = () => {
 
-    const profileData = {
-        profileName: "",
-        profileImage: "https://imgs.search.brave.com/z-3_VMVbo5k1c4nYN-MGQSo7jUle-HYqNAS5ED1Soag/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9kMnFw/MHNpb3RsYTc0Ni5j/bG91ZGZyb250Lm5l/dC9pbWcvdXNlLWNh/c2VzL3Byb2ZpbGUt/cGljdHVyZS90ZW1w/bGF0ZV8wLmpwZw",
-        profileId: "",
-        profileEmail: ""
-      }
-
-      localStorage.setItem("profileData", profileData.profileImage);
-
-      localStorage.setItem("isLogged", false)
+    // const profileData = {
+    //     profileName: "",
+    //     profileImage: "https://imgs.search.brave.com/z-3_VMVbo5k1c4nYN-MGQSo7jUle-HYqNAS5ED1Soag/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9kMnFw/MHNpb3RsYTc0Ni5j/bG91ZGZyb250Lm5l/dC9pbWcvdXNlLWNh/c2VzL3Byb2ZpbGUt/cGljdHVyZS90ZW1w/bGF0ZV8wLmpwZw",
+    //     profileId: "",
+    //     profileEmail: ""
+    // }
 
 
 
     return (
 
-        
+
 
         <div className='login-page-main-cont'>
             <SignInBtn />
