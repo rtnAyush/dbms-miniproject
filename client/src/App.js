@@ -8,6 +8,7 @@ import Login from './components/login/Login';
 import AttendenceMarker from './components/attendence-marker/AttendenceMarker';
 import Nav from './components/login/Nav';
 import Attendence from './components/attendence-marker/Attendence';
+import Menu from './components/showmenu/Menu';
 
 
 function App() {
@@ -23,12 +24,13 @@ function App() {
             </div>
           </>
         } />
+        <Route path='/menu' element={<Menu />} />
         <Route path='/login' element={<Login />} />
         {/* <Route path='/nav' element={<Nav />} /> */}
         <Route path='/attendence' element={<AttendenceMarker />} />
         <Route path="/att" element={<Attendence />} />
 
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} /> 
       </Routes>
     </div>
   );
