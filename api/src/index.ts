@@ -4,7 +4,7 @@ import cors from "cors";
 import attendenceRoutes from "./routes/attendence.route";
 import menuRoutes from "./routes/messMenu.route";
 import userRoutes from "./routes/user.route";
-import complainRoutes from "./routes/complains.route.ts";
+import complainRoutes from "./routes/complains.route";
 
 
 const app = express();
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use("/api/attendence", attendenceRoutes);
 app.use("/api/menu", menuRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/complains", complainRoute);
+app.use("/api/complains", complainRoutes);
 
 
 app.listen(port, () => {

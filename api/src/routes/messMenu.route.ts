@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
 import prisma from "../utils/prisma";
+import { Sessions } from "@prisma/client";
 
 const routes = Router();
 
@@ -12,12 +13,13 @@ routes
 			if (!day) throw new Error("Missing Day");
 			if (!session) throw new Error("Missing session");
 
-			const menuToday = await prisma.Menu.findMany({
-				where: { session: session },
-			})
+			const menuToday = await prisma.menu.findMany({
+				where: { session: session as Sessions },
+			});
 
-			return res.status(200).json({ error: false, msg: "Success", data: menuToday });
-
+			return res
+				.status(200)
+				.json({ error: false, msg: "Success", data: menuToday });
 		} catch (err: any) {
 			return res.status(400).json({ error: true, msg: err?.message });
 		}
@@ -30,36 +32,34 @@ routes
 			if (!name) throw new Error("Missing Name");
 			if (!session) throw new Error("Missing Session");
 
-			const foodExists = await prisma.FoodItem.findUnique({
-				select: { id },
+			const foodExists = await prisma.foodItems.findFirst({
 				where: { name: name },
-			})
+				select: { id: true },
+			});
 
-			if(foodExists == null)
-			{
-				const foodId = await prisma.FoodItem.create({
+			if (foodExists == null) {
+				const foodId = await prisma.foodItems.create({
 					data: {
-						name: name
+						name: name,
 					},
 					select: { id: true },
-				})
+				});
 
-				const addMenu = await prisma.Menu.create({
+				const addMenu = await prisma.menu.create({
 					data: {
 						day: day,
 						session: session,
-						foodId: foodId
+						foodId: foodId.id,
 					},
-				})
-			}
-			else {
-				const addMenu = await prisma.Menu.create({
+				});
+			} else {
+				const addMenu = await prisma.menu.create({
 					data: {
 						day: day,
 						session: session,
-						foodId: foodId
+						foodId: foodExists.id,
 					},
-				})
+				});
 			}
 
 			return res.status(200).json({ error: false, msg: "Success" });

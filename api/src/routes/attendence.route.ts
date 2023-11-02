@@ -6,7 +6,6 @@ import {
 } from "../controller/routes.controller";
 import prisma from "../utils/prisma";
 
-
 const routes = Router();
 
 routes.post("/mark", async (req: Request, res: Response) => {
@@ -17,7 +16,6 @@ routes.post("/mark", async (req: Request, res: Response) => {
 		if (!userId) throw new Error("Missing userId");
 		// if (!isMessTime()) throw new Error("Not Mess Time");
 
-
 		const dist = getDistance({
 			lat1: 10.6603779,
 			lon1: 78.6001371,
@@ -26,14 +24,6 @@ routes.post("/mark", async (req: Request, res: Response) => {
 		});
 
 		if (dist > 100) throw new Error("Not in range of mess");
-        
-    const markedTime = await prisma.Users.findUnique({
-    	where: {
-    		id: userId,
-    	},
-    })
-    
-		const lastMarkedTime = moment(markedTime).format("HH:mm:ss");
 
 		const markedTime = await prisma.users.findUnique({
 			where: {
@@ -52,14 +42,12 @@ routes.post("/mark", async (req: Request, res: Response) => {
 			data: { lastAttendence: date },
 		});
 
-		return res
-			.status(200)
-			.json({
-				error: false,
-				msg: "Success",
-				dist,
-				data: markedTimeUpdate,
-			});
+		return res.status(200).json({
+			error: false,
+			msg: "Success",
+			dist,
+			data: markedTimeUpdate,
+		});
 	} catch (err: any) {
 		console.log(err?.message);
 		return res.status(400).json({ error: true, msg: err?.message });
