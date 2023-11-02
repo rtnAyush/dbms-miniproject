@@ -7,6 +7,13 @@
     display: grid;
     grid-template-columns: 30% 60%;
     justify-content: space-between;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.gridItem:hover {
+    background: #ff4d4d;
+    scale: 1.01;
 }
 
 .gridItemRight {
