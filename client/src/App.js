@@ -8,7 +8,9 @@ import MainArea from './components/homepage/MainArea';
 // import Login from './components/login/Login';
 import AttendenceMarker from './components/attendence-marker/AttendenceMarker';
 import Nav from './components/login/Nav';
-import Attendence from './components/attendence-marker/Attendence';
+
+// import Attendence from './components/attendence-marker/Attendence';
+
 import HomepageLogo from './components/homepage/HomepageLogo';
 // import Menu from './components/showmenu/Menu';
 // import { useState } from 'react';
@@ -23,9 +25,10 @@ function App() {
         <Route path="/" element={
           <>
 
-          <div className='dash-cont'>
-          <HomepageLogo />
-            <MainArea />
+            <div className='dash-cont'>
+              <HomepageLogo />
+              <MainArea />
+
 
             </div>
           </>
