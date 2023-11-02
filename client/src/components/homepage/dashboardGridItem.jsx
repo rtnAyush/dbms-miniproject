@@ -1,6 +1,7 @@
 import React from 'react'
 import './dashboardGridItem.css'
 
+
 export default function DashboardGridItem( {num, name, col, icon} ) {
   return (
     <div className='gridItem' style={{background: col}}>
