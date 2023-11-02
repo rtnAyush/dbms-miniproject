@@ -22,17 +22,20 @@ function App() {
       <Routes>
         <Route path="/" element={
           <>
+
           <div className='dash-cont'>
           <HomepageLogo />
             <MainArea />
+
             </div>
           </>
         } />
         {/* <Route path='/login' element={<Login />} /> */}
-        <Route path='/attendance' element={<AttendenceMarker />} />
-        <Route path="/att" element={<Attendence />} />
 
-        <Route path="*" element={<NotFound />} /> 
+        <Route path='/attendance' element={<AttendenceMarker />} />
+
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
