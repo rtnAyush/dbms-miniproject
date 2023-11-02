@@ -41,7 +41,7 @@ routes
 					data: {
 						name: name
 					},
-					select: { id },
+					select: { id: true },
 				})
 
 				const addMenu = await prisma.Menu.create({
