@@ -1,4 +1,8 @@
 import { Router, Request, Response } from "express";
+import dotenv from "dotenv";
+
+dotenv.config();
+
 import {
 	getDistance,
 	getMessCategory,
@@ -16,14 +20,18 @@ routes.post("/mark", async (req: Request, res: Response) => {
 		if (!userId) throw new Error("Missing userId");
 		// if (!isMessTime()) throw new Error("Not Mess Time");
 
+
 		const dist = getDistance({
-			lat1: 10.6603779,
-			lon1: 78.6001371,
+			lat1: parseFloat(process.env.MESS_LAT) as number,
+			lon1: parseFloat(process.env.MESS_LON) as number,
 			lat2: lat,
 			lon2: lon,
 		});
 
-		if (dist > 100) throw new Error("Not in range of mess");
+		if (dist > 1000)
+			throw new Error(
+				"Not in range of mess, you are away " + dist + " meters"
+			);
 
 		const markedTime = await prisma.users.findUnique({
 			where: {
@@ -35,11 +43,11 @@ routes.post("/mark", async (req: Request, res: Response) => {
 
 		if (isAlreadyMarked) throw new Error("Already marked");
 
-		const date = new Date().toISOString();
+		const date = new Date();
 
 		const markedTimeUpdate = await prisma.users.update({
 			where: { id: userId },
-			data: { lastAttendence: date },
+			data: { lastAttendence: date.toISOString() },
 		});
 
 		return res.status(200).json({

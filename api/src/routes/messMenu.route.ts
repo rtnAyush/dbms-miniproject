@@ -9,12 +9,21 @@ routes
 	.get(async (req: Request, res: Response) => {
 		const { day, session } = req.query;
 
-		try {
-			if (!day) throw new Error("Missing Day");
-			if (!session) throw new Error("Missing session");
+		const query = {};
 
+		if (day) {
+			query["day"] = day;
+		}
+		if (session) {
+			query["session"] = session as Sessions;
+		}
+
+		try {
 			const menuToday = await prisma.menu.findMany({
-				where: { session: session as Sessions },
+				where: query,
+				include: {
+					food: true,
+				},
 			});
 
 			return res
@@ -32,7 +41,7 @@ routes
 			if (!name) throw new Error("Missing Name");
 			if (!session) throw new Error("Missing Session");
 
-			const foodExists = await prisma.foodItems.findFirst({
+			const foodExists = await prisma.foodItems.findUnique({
 				where: { name: name },
 				select: { id: true },
 			});
@@ -63,6 +72,38 @@ routes
 			}
 
 			return res.status(200).json({ error: false, msg: "Success" });
+		} catch (err: any) {
+			return res.status(400).json({ error: true, msg: err?.message });
+		}
+	})
+	.delete(async (req: Request, res: Response) => {
+		const { day, session, name } = req.params;
+		try {
+			if (!day) throw new Error("Missing Day");
+			if (!name) throw new Error("Missing Name");
+			if (!session) throw new Error("Missing Session");
+
+			const foodExists = await prisma.foodItems.findUnique({
+				where: { name: name },
+			});
+
+			if (foodExists.id == null) {
+				throw new Error("No record with such name.");
+			}
+
+			const addToDeleted = await prisma.foodItemsDeleted.create({
+				data: {
+					name: foodExists.name,
+				},
+			});
+
+			const removeFromFoodItems = await prisma.foodItems.delete({
+				where: { id: foodExists.id },
+			});
+
+			return res
+				.status(200)
+				.json({ error: false, msg: "Success", data: foodExists });
 		} catch (err: any) {
 			return res.status(400).json({ error: true, msg: err?.message });
 		}
