@@ -1,32 +1,11 @@
 import { Link } from "react-router-dom";
-import LoginBtn from "./LoginBtn";
-import LogoutBtn from "./LogoutBtn"
+import Login from './Login'
 import "./nav.css"
 
-import React, { useState } from 'react'
-
-const profileData = {
-    profileName: "",
-    profileImage: "https://imgs.search.brave.com/z-3_VMVbo5k1c4nYN-MGQSo7jUle-HYqNAS5ED1Soag/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9kMnFw/MHNpb3RsYTc0Ni5j/bG91ZGZyb250Lm5l/dC9pbWcvdXNlLWNh/c2VzL3Byb2ZpbGUt/cGljdHVyZS90ZW1w/bGF0ZV8wLmpwZw",
-    profileId: "",
-    profileEmail: ""
-}
 
 export default function Nav() {
 
 
-    
-    const [obj, setObj] = useState(profileData)
-
-    const [isLoggedIn, setLoggedIn] = useState(false);
-
-    const falseMake = () => {
-        setLoggedIn(false)
-    }
-
-    const trueMake = () => {
-        setLoggedIn(true)
-    }
 
     return (
         <div className="navpad-outer-cont">
@@ -43,23 +22,8 @@ export default function Nav() {
                     </ul>
                 </div>
 
-                {isLoggedIn ?
-                    <>
-                        <div className="dropdown">
-                            <div className="profile dropdown-toggle " id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><img src={obj.profileImage} alt="" /></div>
-                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><Link className="dropdown-item" to="/">{<LogoutBtn fun={falseMake} />}</Link></li>
-                            </ul>
-                        </div>
-                    </>
-                    :
-                    <>
-                        <div className="profile"><LoginBtn stfun={setObj} fun={trueMake} /></div>
-                    </>
-                }
+                <span className="dropdown">{<Login />}</span>
             </nav>
         </div>
     )
 }
-
-// export {profileData}
