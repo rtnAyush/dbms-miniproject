@@ -4,8 +4,13 @@
   box-sizing: border-box;
 }
 
-.App {
+/* .App {
   text-align: center;
   display: flex;
-}
+} */
 
+.dash-cont{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
