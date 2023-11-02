@@ -16,7 +16,7 @@ export default function Nav() {
     }
     const [obj, setObj] = useState(profileData)
 
-    const [isLoggedIn, setLoggedIn] = useState(true);
+    const [isLoggedIn, setLoggedIn] = useState(false);
 
     const falseMake = () => {
         setLoggedIn(false)
