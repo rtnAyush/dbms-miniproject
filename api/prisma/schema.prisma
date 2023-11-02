@@ -54,7 +54,7 @@ model VoteCalc {
 
 model FoodItems {
   id   Int    @id @default(autoincrement())
-  name String
+  name String @unique
   menu Menu[]
 }
 
@@ -65,6 +65,35 @@ model Menu {
   food    FoodItems @relation(fields: [foodId], references: [id])
   foodId  Int
 }
+
+
+// Tables to Store Deleted data for future analysis
+
+model UsersDeleted {
+  id             Int         @id @default(autoincrement())
+  name           String
+  rollNumber     Int?        @unique
+  email          String      @unique
+  role           Role        @default(user)
+  lastAttendence DateTime    @default(now())
+}
+
+model ComplainsDeleted {
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  session     Sessions
+  title       String
+  description String?
+  upvote      Int?       @default(0)
+  downvote    Int?       @default(0)
+}
+
+model FoodItemsDeleted {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+}
+
+// Enums
 
 enum Day {
   monday
