@@ -8,7 +8,8 @@ routes
 	.get(async (req: Request, res: Response) => {
 		let filter = {};
 		let sortOptions = {};
-		const { userId, date, upvote, downvote } = req.body;
+		const { userId1, date, upvote, downvote } = req.body;
+		let userId = parseInt(userId1);
 
 		try {
 			if (userId) {
@@ -45,7 +46,8 @@ routes
 		}
 	})
 	.post(async (req: Request, res: Response) => {
-		const { userId, title, desc, session } = req.body;
+		const { userId1, title, desc, session } = req.body;
+		let userId = parseInt(userId1);
 
 		try {
 			if (!userId) throw new Error("Missing userId");
@@ -58,7 +60,7 @@ routes
 					title: title,
 					description: desc,
 					session: session,
-					authorId: parseInt(userId),
+					authorId: userId,
 				},
 			});
 			return res
@@ -69,7 +71,9 @@ routes
 		}
 	})
 	.put(async (req: Request, res: Response) => {
-		const { vote, userId, complainId } = req.body;
+		const { vote, userId1, complainId1 } = req.body;
+		let userId = parseInt(userId1);
+		let complainId = parseInt(complainId1);
 
 		try {
 			if (!vote) throw new Error("Missing vote");
@@ -122,11 +126,12 @@ routes
 		}
 	})
 	.delete(async (req: Request, res: Response) => {
-		const { complainId } = req.params;
+		const { complainId1 } = req.params;
+		let complainId = parseInt(complainId1);
 
 		try {
 			const findComplain = await prisma.complains.findUnique({
-				where: { id: parseInt(complainId) },
+				where: { id: complainId },
 			});
 
 			const updateInDeletedComplain =
@@ -142,7 +147,7 @@ routes
 				});
 
 			const deleteFromComplain = await prisma.complains.delete({
-				where: { id: parseInt(complainId) },
+				where: { id: complainId },
 			});
 
 			return res.status(200).json({
