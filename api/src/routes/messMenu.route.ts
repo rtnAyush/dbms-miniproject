@@ -9,12 +9,18 @@ routes
 	.get(async (req: Request, res: Response) => {
 		const { day, session } = req.query;
 
-		try {
-			if (!day) throw new Error("Missing Day");
-			if (!session) throw new Error("Missing session");
+		const query = {};
 
+		if (day) {
+			query["day"] = day;
+		}
+		if (session) {
+			query["session"] = session as Sessions;
+		}
+
+		try {
 			const menuToday = await prisma.menu.findMany({
-				where: { session: session as Sessions },
+				where: query,
 				include: {
 					food: true,
 				},
