@@ -6,6 +6,7 @@ import {
 } from "../controller/routes.controller";
 import prisma from "../utils/prisma";
 
+
 const routes = Router();
 
 routes.post("/mark", async (req: Request, res: Response) => {

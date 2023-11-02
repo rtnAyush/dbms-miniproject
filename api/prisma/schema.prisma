@@ -11,13 +11,14 @@ datasource db {
 }
 
 model Users {
-  id         Int         @id @default(autoincrement())
-  name       String
-  rollNumber Int?        @unique
-  email      String      @unique
-  role       Role        @default(user)
-  complains  Complains[]
-  votecalc   VoteCalc[]
+  id             Int         @id @default(autoincrement())
+  name           String
+  rollNumber     Int?        @unique
+  email          String      @unique
+  role           Role        @default(user)
+  lastAttendence DateTime    @default(now())
+  complains      Complains[]
+  votecalc       VoteCalc[]
 }
 
 model DailyCount {
@@ -58,10 +59,11 @@ model FoodItems {
 }
 
 model Menu {
-  id     Int       @id @default(autoincrement())
-  day    Day
-  food   FoodItems @relation(fields: [foodId], references: [id])
-  foodId Int
+  id      Int       @id @default(autoincrement())
+  day     Day
+  session Sessions
+  food    FoodItems @relation(fields: [foodId], references: [id])
+  foodId  Int
 }
 
 enum Day {
