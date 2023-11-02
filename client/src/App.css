@@ -4,20 +4,24 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* .App {
   text-align: center;
   display: flex;
 } */
 
-.dash-con{
+.dash-con {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  
+
 }
 
-.container{
+.container {
   background-color: #FEFBF6;
   width: 100vw;
   display: flex;
