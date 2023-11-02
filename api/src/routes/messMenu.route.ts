@@ -15,6 +15,9 @@ routes
 
       const menuToday = await prisma.menu.findMany({
         where: { session: session as Sessions },
+		include: {
+			food: true,
+		},
       });
 
       return res
