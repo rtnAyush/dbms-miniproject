@@ -10,8 +10,8 @@ routes.post("/mark", async (req: Request, res: Response) => {
 	const { lat, lon, userId } = req.body;
 
 	try {
-		// if (!lat || !lon) throw new Error("Missing lat or lon");
-		// if (!userId) throw new Error("Missing userId");
+		 if (!lat || !lon) throw new Error("Missing lat or lon");
+		 if (!userId) throw new Error("Missing userId");
 
 		const dist = getDistance({
 			lat1: 23.810331,
@@ -20,8 +20,6 @@ routes.post("/mark", async (req: Request, res: Response) => {
 			lon2: lon,
 		});
         
-
-
     const markedTime = await prisma.Users.findUnique({
     	where: {
     		id: userId,

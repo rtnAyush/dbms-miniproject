@@ -12,7 +12,6 @@ routes
 			if (!day) throw new Error("Missing Day");
 			if (!session) throw new Error("Missing session");
 
-
 			const menuToday = await prisma.Menu.findMany({
 				where: { session: session },
 			})
@@ -31,7 +30,6 @@ routes
 			if (!name) throw new Error("Missing Name");
 			if (!session) throw new Error("Missing Session");
 
-
 			const foodExists = await prisma.FoodItem.findUnique({
 				select: { id },
 				where: { name: name },
@@ -43,7 +41,7 @@ routes
 					data: {
 						name: name
 					},
-					select: { id },
+					select: { id: true },
 				})
 
 				const addMenu = await prisma.Menu.create({
