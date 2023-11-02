@@ -68,7 +68,7 @@ routes
     }
   })
   .delete(async (req: Request, res: Response) => {
-    const { day, session, name } = req.body;
+    const { day, session, name } = req.params;
     try {
       if (!day) throw new Error("Missing Day");
       if (!name) throw new Error("Missing Name");
