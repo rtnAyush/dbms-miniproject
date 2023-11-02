@@ -6,10 +6,10 @@ generator client {
 }
 
 generator erd {
-  provider  = "prisma-erd-generator"
-  theme     = "forest"
-  output    = "ERD3.svg"
-  tableOnly = false
+  provider    = "prisma-erd-generator"
+  output      = "ERD.svg"
+  tableOnly   = false
+  ignoreEnums = true
 }
 
 datasource db {
@@ -26,6 +26,7 @@ model Users {
   lastAttendence DateTime    @default(now())
   complains      Complains[]
   votecalc       VoteCalc[]
+  password       String?
 }
 
 model DailyCount {
@@ -57,6 +58,8 @@ model VoteCalc {
   voterId    Int
   complain   Complains @relation(fields: [complainId], references: [id])
   complainId Int
+
+  @@unique([voterId, complainId])
 }
 
 model FoodItems {

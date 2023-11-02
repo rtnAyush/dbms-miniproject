@@ -46,8 +46,6 @@ export default function Mainarea() {
             ))
           }
         </div>
-
-
       </div>
     </div>
   );
