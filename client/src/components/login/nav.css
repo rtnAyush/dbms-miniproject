@@ -1,0 +1,13 @@
+.profile img{
+    width: 40px;
+    border-radius: 50%;
+}
+
+.profile{
+    margin-right: 50px;
+    cursor: pointer;
+}
+
+.navpad{
+    padding-inline: 50px;
+}

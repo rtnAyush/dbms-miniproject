@@ -9,3 +9,87 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Users {
+  id             Int         @id @default(autoincrement())
+  name           String
+  rollNumber     Int?        @unique
+  email          String      @unique
+  role           Role        @default(user)
+  lastAttendence DateTime    @default(now())
+  complains      Complains[]
+  votecalc       VoteCalc[]
+}
+
+model DailyCount {
+  id        Int      @id @default(autoincrement())
+  date      DateTime @default(now()) @db.Date
+  breakfast Int      @default(0)
+  lunch     Int      @default(0)
+  snack     Int      @default(0)
+  dinner    Int      @default(0)
+}
+
+model Complains {
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  session     Sessions
+  title       String
+  description String?
+  upvote      Int?       @default(0)
+  downvote    Int?       @default(0)
+  author      Users?     @relation(fields: [authorId], references: [id])
+  authorId    Int?
+  votecalc    VoteCalc[]
+}
+
+model VoteCalc {
+  id         Int       @id @default(autoincrement())
+  vote       Vote      @default(up)
+  voter      Users     @relation(fields: [voterId], references: [id])
+  voterId    Int
+  complain   Complains @relation(fields: [complainId], references: [id])
+  complainId Int
+}
+
+model FoodItems {
+  id   Int    @id @default(autoincrement())
+  name String
+  menu Menu[]
+}
+
+model Menu {
+  id      Int       @id @default(autoincrement())
+  day     Day
+  session Sessions
+  food    FoodItems @relation(fields: [foodId], references: [id])
+  foodId  Int
+}
+
+enum Day {
+  monday
+  tuesday
+  wednesday
+  thursday
+  friday
+  saturday
+  sunday
+}
+
+enum Role {
+  user
+  admin
+  superadmin
+}
+
+enum Sessions {
+  breakfast
+  lunch
+  snack
+  dinner
+}
+
+enum Vote {
+  up
+  down
+}
