@@ -6,6 +6,11 @@ import {Container, Button, Image, Modal } from 'react-bootstrap';
 import useAxios from '../../hooks/useAxios';
 import Clock from './Clock';
 
+const options = { day: '2-digit', month: 'short', year: 'numeric' };
+const formattedDate = new Intl.DateTimeFormat('en-US', options).format(new Date());
+
+
+
 export default function AttendenceMarker() {
 
     const location = useGeoLocation();
@@ -55,7 +60,8 @@ export default function AttendenceMarker() {
                     <h1 className='header' style={{color: "white"}}>Mark Your Attendance</h1>
 
                     <h5 className="sub__name" style={{color: "white"}}>
-                        Date: {new Date().toLocaleDateString()}
+                        {/* Date: {new Date().toDateString()} */}
+                        Date: {formattedDate}
                     </h5>
                     <h5 className="timings" style={{color: "white"}}>
                         Time: {<Clock />}
