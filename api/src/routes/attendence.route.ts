@@ -25,7 +25,9 @@ routes.post("/mark", async (req: Request, res: Response) => {
 		});
 		console.log(dist);
 
+
 		if (dist > 100) throw new Error("Not in range of mess");
+
 
 		const markedTime = await prisma.users.findUnique({
 			where: {
