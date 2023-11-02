@@ -7,7 +7,7 @@ export default function Menu() {
     const days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
     let day = days[today.getDay()];
     const api = useAxios();
-    const sessions = ["breakfast", "lunch", "snacks", "dinner"];
+    const sessions = ["breakfast", "lunch", "snack", "dinner"];
 
     const [menu, setMenu] = useState(["", "", "", ""]);
 
