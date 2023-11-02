@@ -12,6 +12,7 @@ import Attendence from './components/attendence-marker/Attendence';
 import Menu from './components/showmenu/Menu';
 import Admin from './components/admin/Admin';
 import AddMenuItem from './components/admin/AddMenuItem';
+import Users from './components/users/Users';
 
 // import Attendence from './components/attendence-marker/Attendence';
 
@@ -43,6 +44,7 @@ function App() {
         <Route path='/admin' element={<Admin />} /> 
         <Route path='/menu' element={<Menu />} />
         <Route path='/admin/menu' element={<Admin />} />
+        <Route path='/admin/users' element={<Users />} />
         <Route path="*" element={<NotFound />} /> 
 
         <Route path='/attendance' element={<AttendenceMarker />} />
