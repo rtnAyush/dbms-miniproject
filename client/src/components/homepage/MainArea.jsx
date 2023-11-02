@@ -38,18 +38,7 @@ export default function Mainarea() {
   ]
   return (
     <div className="main-container">
-      <div className="maintop">
-        <div className="left">Company Name</div>
-        <div className="right">
-          <i className="fa fa-user-circle" aria-hidden="true"></i>{" "}{" "}{
-            "Student_Name"}
-        </div>
-      </div>
       <div className="maincontent">
-        <div className="mainhead">
-          <h1>Student Details</h1>
-          Student details dashboard
-        </div>
         <div className="somegrid">
           {
             profileData.map((item, idx) => (
@@ -57,8 +46,6 @@ export default function Mainarea() {
             ))
           }
         </div>
-
-
       </div>
     </div>
   );
