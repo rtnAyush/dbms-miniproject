@@ -7,7 +7,6 @@ import MainArea from './components/homepage/MainArea';
 import Login from './components/login/Login';
 import AttendenceMarker from './components/attendence-marker/AttendenceMarker';
 import Nav from './components/login/Nav';
-import Menu from './components/showmenu/Menu'
 
 
 
@@ -21,7 +20,6 @@ function App() {
             <MainArea />
           </>
         } />
-        <Route path='/menu' element={<Menu />} />
         <Route path='/login' element={<Login />} />
         <Route path='/nav' element={<Nav />} />
         <Route path='/attendence' element={<AttendenceMarker />} />
