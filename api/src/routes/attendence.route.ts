@@ -17,17 +17,23 @@ routes.post("/mark", async (req: Request, res: Response) => {
 		if (!userId) throw new Error("Missing userId");
 		// if (!isMessTime()) throw new Error("Not Mess Time");
 
+
 		const dist = getDistance({
 			lat1: 10.6603779,
 			lon1: 78.6001371,
 			lat2: lat,
 			lon2: lon,
 		});
-		console.log(dist);
-
 
 		if (dist > 100) throw new Error("Not in range of mess");
-
+        
+    const markedTime = await prisma.Users.findUnique({
+    	where: {
+    		id: userId,
+    	},
+    })
+    
+		const lastMarkedTime = moment(markedTime).format("HH:mm:ss");
 
 		const markedTime = await prisma.users.findUnique({
 			where: {
