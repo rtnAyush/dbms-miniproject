@@ -99,6 +99,28 @@ routes
 		return res
 			.status(200)
 			.json({ error: false, msg: "Success", data: updateVal });
+	})
+	.delete(async (req: Request, res: Response) => {
+		const { complainId } = req.params;
+
+		const findComplain = await prisma.complains.findUnique({
+			where: { id: parseInt(complainId) },
+		});
+
+		const updateInDeletedComplain = await prisma.complainsDeleted.create({
+			data: {
+				createdAt: findComplain.createdAt,
+				session: findComplain.session,
+				title: findComplain.title,
+				description: findComplain.description,
+				upvote: findComplain.upvote,
+				downvote: findComplain.downvote,
+			},
+		});
+
+		const deleteFromComplain = await prisma.complains.delete({
+			where: { id: parseInt(complainId) },
+		});
 	});
 
 export default routes;
