@@ -104,41 +104,7 @@ export default function AttendenceMarker() {
                     </Modal.Footer>
                 </Modal>
 
-                {/* <Modal>
-                    {"Great your Attendence has been marked"}
-
-                    <DialogContent>
-                        <DialogContentText className='dialog__done'>
-
-                            <img src={DoneGif} alt="" style={{ width: '100px', objectFit: 'cover' }} />
-                            <span>You are {userLocation} m from class</span>
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose} autoFocus>
-                            Thanks
-                        </Button>
-                    </DialogActions>
-
-                    <DialogTitle style={{ textAlign: 'center' }} className='dialog__done'>
-                        <SentimentDissatisfiedIcon />
-                        <strong>Oops, Invailed Attempt to mark attendence</strong>
-                    </DialogTitle>
-                    <DialogContent>
-                        <DialogContentText className='dialog__done'>
-
-                            <img src={SadGif} alt="" style={{ width: '100px', objectFit: 'cover' }} />
-                            <span>You are {userLocation} m from class</span>
-
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose} autoFocus>
-                            Thanks
-                        </Button>
-                    </DialogActions>
-
-                </Modal> */}
+                
             </div>
 
         </>
