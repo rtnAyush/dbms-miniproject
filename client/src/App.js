@@ -21,16 +21,15 @@ function App() {
       <Routes>
         <Route path="/" element={
           <>
-          <div className='dash-cont'>
-            <MainArea />
+            <div className='dash-cont'>
+              <MainArea />
             </div>
           </>
         } />
         {/* <Route path='/login' element={<Login />} /> */}
-        <Route path='/attendence' element={<AttendenceMarker />} />
-        <Route path="/att" element={<Attendence />} />
+        <Route path='/attendance' element={<AttendenceMarker />} />\
 
-        <Route path="*" element={<NotFound />} /> 
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
