@@ -18,7 +18,7 @@ const LoginPage = () => {
 
         <div className='login-page-main-cont'>
             <SignInBtn />
-            <h3 >Admin</h3>
+            <h3>Admin</h3>
             <div className='login-page-cont'>
                 <Form>
                     <Form.Group className="mb-3" controlId="formGroupEmail">
