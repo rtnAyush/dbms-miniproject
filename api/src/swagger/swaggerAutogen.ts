@@ -3,7 +3,7 @@ const swaggerAutogen = require("swagger-autogen")();
 require("dotenv").config();
 
 const outputFile = "./swagger_output.json";
-const routes = ["../index.ts"];
+const routes = [process.env.SWAGGER_AUTOGEN_PATH];
 const doc = {
 	info: {
 		title: "Your API",
