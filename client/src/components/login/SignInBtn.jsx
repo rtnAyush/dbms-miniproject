@@ -13,7 +13,7 @@ export default function SignInBtn() {
     const api = useAxios();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     async function handleLogin(googleObj) {
         // console.log(googleObj);
