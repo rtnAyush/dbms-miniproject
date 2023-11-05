@@ -6,7 +6,7 @@ import menuRoutes from "./routes/messMenu.route";
 import userRoutes from "./routes/user.route";
 import complainRoutes from "./routes/complains.route";
 import swaggerUi from "swagger-ui-express";
-const swaggerSpec = require("./swagger/swagger_output.json");
+const swaggerSpec = require("../public/swagger_output.json");
 
 const app = express();
 const port = process.env.PORT || 8080;

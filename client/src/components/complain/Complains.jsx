@@ -3,6 +3,7 @@ import Complain from './Complain'
 import useAxios from '../../hooks/useAxios'
 import './complains.css';
 import { Button, Modal, Form } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
 
 
@@ -11,6 +12,7 @@ export default function Complains() {
     const [complains, setComplains] = useState([]);
     const [errMsg, setErrMsg] = useState(false);
     const [show, setShow] = useState(false);
+    const userId = useSelector(state => state?.user?.userId);
 
     const [sort, setSort] = useState('createdAt');
 
@@ -36,7 +38,7 @@ export default function Complains() {
                 title: formData.get('title'),
                 desc: formData.get('description'),
                 session: formData.get('session'),
-                userId1: localStorage.getItem('userId')
+                userId1: userId
             }
             const res = await api.post('/complains', body);
             setErrMsg(res.data?.data?.error);

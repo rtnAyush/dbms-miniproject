@@ -147,6 +147,7 @@ export default function AddMenuItem() {
             const res = await api.post("/menu", body);
             console.log(res.data);
             setShow(false);
+            fetchData();
         } catch (error) {
             console.log(error);
         }

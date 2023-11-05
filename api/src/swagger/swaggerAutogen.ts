@@ -2,15 +2,15 @@ const swaggerAutogen = require("swagger-autogen")();
 // import swaggerAutogen from "swagger-autogen";
 require("dotenv").config();
 
-const outputFile = "./swagger_output.json";
-const routes = [process.env.SWAGGER_AUTOGEN_PATH];
+const outputFile = "../../public/swagger_output.json";
+const routes = ["../index.ts"];
 const doc = {
 	info: {
 		title: "Your API",
 		description: "Description of your API",
 		version: "1.0.0",
 	},
-	host: process.env.SWAGGER_URL + ":" + process.env.PORT,
+	host: process.env.SWAGGER_URL,
 	basePath: "/",
 	schemes: ["http", "https"],
 	consumes: ["application/json"],
