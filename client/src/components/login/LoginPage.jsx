@@ -14,28 +14,36 @@ const LoginPage = () => {
 
     return (
 
-
-
         <div className='login-page-main-cont'>
-            <SignInBtn />
-            <h3>Admin</h3>
-            <div className='login-page-cont'>
-                <Form>
-                    <Form.Group className="mb-3" controlId="formGroupEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formGroupPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
-                    </Form.Group>
-                    <div className="btn-cont">
-                        <Button size='lg' variant='primary'>Submit</Button>
-                    </div>
-                </Form>
+            <div className="login-cont">
+                <div className="img-logo-cont">
+                    <img src="/logo192.png" alt="" srcset="" />
+                </div>
+                <div className="heading text-center">
+                    <h1>Welcome to Mess Buddy</h1>
+                </div>
+                <div className="signin-cont">
+                    <SignInBtn />
+                </div>
+                <h3>Admin</h3>
+                <div className='login-page-cont'>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="formGroupEmail">
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control type="email" placeholder="Enter email" />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formGroupPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Password" />
+                        </Form.Group>
+                        <div className="btn-cont">
+                            <Button size='lg' variant='primary'>Submit</Button>
+                        </div>
+                    </Form>
+                </div>
             </div>
-
         </div>
+
     )
 }
 

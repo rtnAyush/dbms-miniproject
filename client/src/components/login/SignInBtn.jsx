@@ -47,6 +47,10 @@ export default function SignInBtn() {
         <>
             <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
                 <GoogleLogin
+                    size='large'
+                    shape='pill'
+                    width={300}
+                    theme='filled_blue'
                     onSuccess={credentialResponse => {
                         setLoading(true);
                         const decoded = jwtDecode(credentialResponse.credential);
