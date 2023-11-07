@@ -33,12 +33,6 @@
               "properties": {
                 "userId": {
                   "example": "any"
-                },
-                "lat": {
-                  "example": "any"
-                },
-                "lon": {
-                  "example": "any"
                 }
               }
             }
