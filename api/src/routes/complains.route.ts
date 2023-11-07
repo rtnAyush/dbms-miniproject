@@ -109,16 +109,16 @@ routes
 			}
 
 			let updateVal = {};
+			const vo = await prisma.complains.findUnique({
+				where: {
+					id: complainId,
+				},
+				select: {
+					upvote: true,
+					downvote: true,
+				},
+			});
 			if (vote == "up") {
-				const vo = await prisma.complains.findUnique({
-					where: {
-						id: complainId,
-					},
-					select: {
-						upvote: true,
-						downvote: true,
-					},
-				});
 				if (voted == true) {
 					if (alreadyVoted.vote == "up") {
 						throw new Error("Already upvoted");
@@ -127,15 +127,6 @@ routes
 				}
 				updateVal["upvote"] = vo.upvote + 1;
 			} else if (vote == "down") {
-				const vo = await prisma.complains.findUnique({
-					where: {
-						id: complainId,
-					},
-					select: {
-						upvote: true,
-						downvote: true,
-					},
-				});
 				if (voted == true) {
 					if (alreadyVoted.vote == "down") {
 						throw new Error("Already downvoted");
@@ -149,6 +140,8 @@ routes
 					where: { id: delVoteId },
 				});
 			}
+
+			console.log(updateVal);
 
 			const voteAdd = await prisma.complains.update({
 				where: {
