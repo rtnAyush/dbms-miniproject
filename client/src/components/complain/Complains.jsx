@@ -4,6 +4,7 @@ import useAxios from '../../hooks/useAxios'
 import './complains.css';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -12,14 +13,19 @@ export default function Complains() {
     const [complains, setComplains] = useState([]);
     const [errMsg, setErrMsg] = useState(false);
     const [show, setShow] = useState(false);
-    const userId = useSelector(state => state?.user?.userId);
+
+    const currUser = useSelector((state) => state?.user);
+    // const userId = useSelector(state => state?.user?.userId);
 
     const [sort, setSort] = useState('createdAt');
 
+    const navigate = useNavigate();
     useEffect(() => {
         getComplains(sort);
         // eslint-disable-next-line
     }, [sort]);
+
+
 
     async function getComplains(sort) {
         try {
@@ -38,7 +44,7 @@ export default function Complains() {
                 title: formData.get('title'),
                 desc: formData.get('description'),
                 session: formData.get('session'),
-                userId1: userId
+                userId1: currUser?.userId
             }
             const res = await api.post('/complains', body);
             setErrMsg(res.data?.data?.error);
@@ -50,13 +56,20 @@ export default function Complains() {
         }
     }
 
+    function openModal() {
+        if (!currUser) {
+            navigate('/login', { state: { redirect: '/complaints' } })
+        }
+        setShow(true);
+    }
+
 
     return (
         <>
             <div className='container'>
                 <h1 className='m-4'>All Complains List</h1>
                 <section className='d-flex justify-content-end my-4'>
-                    <Button variant="primary" style={{ whiteSpace: 'nowrap' }} onClick={() => setShow(true)}> Add New Complaint</Button>
+                    <Button variant="primary" style={{ whiteSpace: 'nowrap' }} onClick={openModal}> Add New Complaint</Button>
                 </section>
                 <section className='d-flex justify-content-end' style={{ maxWidth: '900px', margin: '1rem auto', }}>
                     <div>
@@ -70,7 +83,7 @@ export default function Complains() {
                 </section>
                 {
                     complains.map((complain, idx) => (
-                        <Complain key={idx} complain={complain} />
+                        <Complain key={idx} currUser={currUser} complain={complain} />
                     ))
                 }
             </div>

@@ -5,15 +5,13 @@ import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { setLogin } from '../../state';
 import { googleLogout } from '@react-oauth/google';
-import { useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 
 
-export default function SignInBtn() {
+export default function SignInBtn({ location, loading, setLoading }) {
     const api = useAxios();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(false);
 
 
     async function handleLogin(googleObj) {
@@ -34,7 +32,7 @@ export default function SignInBtn() {
                 },
                 isLogged: true,
             }))
-            navigate("/");
+            navigate(location?.state?.redirect || '/');
         } catch (error) {
             console.error(error);
             alert(error?.response?.data?.msg)

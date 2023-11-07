@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import useAxios from "../../hooks/useAxios";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function AddMenuItem() {
     const api = useAxios();
@@ -18,6 +20,10 @@ export default function AddMenuItem() {
         ["", "", "", ""],
         ["", "", "", ""],
     ]);
+
+    const navigate = useNavigate();
+    const currUser = useSelector((state) => state?.user);
+
 
     function loadTable(arr) {
         let newTable = [[...tabledata[0]], [...tabledata[1]], [...tabledata[2]], [...tabledata[3]], [...tabledata[4]], [...tabledata[5]], [...tabledata[6]]]
@@ -153,69 +159,78 @@ export default function AddMenuItem() {
         }
     }
     return (
-        <>
-            <div style={{ margin: "10px 10px 10px auto" }}>
-                <Button onClick={() => setShow(true)}>Add menu</Button>
-            </div>
-            <Modal show={show} onHide={() => setShow(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>
-                        <h1>Add Item To Menu</h1>
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Select
-                            name="day"
-                            aria-label="select day"
-                        >
-                            <option value="" disabled selected hidden>Choose a day</option>
-                            <option value={days[0]}>{days[0]}</option>
-                            <option value={days[1]}>{days[1]}</option>
-                            <option value={days[2]}>{days[2]}</option>
-                            <option value={days[3]}>{days[3]}</option>
-                            <option value={days[4]}>{days[4]}</option>
-                            <option value={days[5]}>{days[5]}</option>
-                            <option value={days[6]}>{days[6]}</option>
-                        </Form.Select>
-                        <Form.Select
-                            name="session"
-                            aria-label="select session"
-                        >
-                            <option value="" disabled selected hidden>Choose a session</option>
-                            <option value={sessions[0]}>{sessions[0]}</option>
-                            <option value={sessions[1]}>{sessions[1]}</option>
-                            <option value={sessions[2]}>{sessions[2]}</option>
-                            <option value={sessions[3]}>{sessions[3]}</option>
-                        </Form.Select>
-                        <Form.Control
-                            name="name"
-                            type="text"
-                            placeholder="Enter Item Name"
-                        />
-                        <Form.Control type="submit" value="submit" />
-                        <Form.Control onClick={() => setShow(false)} type="button" value="Close" />
-                    </Form>
-                </Modal.Body>
-            </Modal>
-            <div className="table2">
-                <div className="tablecontainer2">
-                    <table className="table3">
-                        <thead>
-                            <tr>
-                                <th>Day</th>
-                                <th>{sessions[0]}</th>
-                                <th>{sessions[1]}</th>
-                                <th>{sessions[2]}</th>
-                                <th>{sessions[3]}</th>
-                            </tr>
-                        </thead>
-                        <tbody className='tb'>
-                            <CreateTable />
-                        </tbody>
-                    </table>
+        currUser?.role !== 'admin' ?
+            <div className="d-flex justify-content-center align-items-center" style={{ height: '65vh' }}>
+                <div className="text-center">
+                    <h2>You are not authorized to view this page</h2>
+                    <Button onClick={() => navigate('/')} variant="primary" className='me-3'>Go to Home</Button>
+                    <Button onClick={() => navigate('/login', { state: { redirect: '/admin' } })} variant="secondary">Go to Login</Button>
                 </div>
             </div>
-        </>
+            :
+            <>
+                <div style={{ margin: "10px 10px 10px auto" }}>
+                    <Button onClick={() => setShow(true)}>Add menu</Button>
+                </div>
+                <Modal show={show} onHide={() => setShow(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            <h1>Add Item To Menu</h1>
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form onSubmit={handleSubmit}>
+                            <Form.Select
+                                name="day"
+                                aria-label="select day"
+                            >
+                                <option value="" disabled selected hidden>Choose a day</option>
+                                <option value={days[0]}>{days[0]}</option>
+                                <option value={days[1]}>{days[1]}</option>
+                                <option value={days[2]}>{days[2]}</option>
+                                <option value={days[3]}>{days[3]}</option>
+                                <option value={days[4]}>{days[4]}</option>
+                                <option value={days[5]}>{days[5]}</option>
+                                <option value={days[6]}>{days[6]}</option>
+                            </Form.Select>
+                            <Form.Select
+                                name="session"
+                                aria-label="select session"
+                            >
+                                <option value="" disabled selected hidden>Choose a session</option>
+                                <option value={sessions[0]}>{sessions[0]}</option>
+                                <option value={sessions[1]}>{sessions[1]}</option>
+                                <option value={sessions[2]}>{sessions[2]}</option>
+                                <option value={sessions[3]}>{sessions[3]}</option>
+                            </Form.Select>
+                            <Form.Control
+                                name="name"
+                                type="text"
+                                placeholder="Enter Item Name"
+                            />
+                            <Form.Control type="submit" value="submit" />
+                            <Form.Control onClick={() => setShow(false)} type="button" value="Close" />
+                        </Form>
+                    </Modal.Body>
+                </Modal>
+                <div className="table2">
+                    <div className="tablecontainer2">
+                        <table className="table3">
+                            <thead>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>{sessions[0]}</th>
+                                    <th>{sessions[1]}</th>
+                                    <th>{sessions[2]}</th>
+                                    <th>{sessions[3]}</th>
+                                </tr>
+                            </thead>
+                            <tbody className='tb'>
+                                <CreateTable />
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </>
     );
 }

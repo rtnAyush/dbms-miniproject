@@ -3,11 +3,12 @@ import Button from 'react-bootstrap/Button';
 import { setLogout } from '../../state';
 import { useDispatch } from 'react-redux';
 
+
 function LogoutBtn() {
   const dispatch = useDispatch();
 
+
   const handleGoogleLogout = () => {
-    console.log('dropdown clicked')
     googleLogout();
     dispatch(setLogout());
   }
