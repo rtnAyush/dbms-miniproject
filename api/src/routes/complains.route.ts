@@ -88,7 +88,7 @@ routes
 					complainId: complainId,
 				},
 			});
-			console.log("Already Voted: ",alreadyVoted);
+			console.log("Already Voted: ", alreadyVoted);
 
 			let voted = false;
 			let delVoteId = 0;
@@ -141,7 +141,7 @@ routes
 				});
 			}
 
-			console.log("Update Value: ",updateVal);
+			console.log("Update Value: ", updateVal);
 
 			const voteAdd = await prisma.complains.update({
 				where: {
@@ -157,40 +157,40 @@ routes
 			console.log(err);
 			return res.status(400).json({ error: true, msg: err?.message });
 		}
-	})
-	.delete(async (req: Request, res: Response) => {
-		const { complainId1 } = req.params;
-		let complainId = parseInt(complainId1);
-
-		try {
-			const findComplain = await prisma.complains.findUnique({
-				where: { id: complainId },
-			});
-
-			const updateInDeletedComplain =
-				await prisma.complainsDeleted.create({
-					data: {
-						createdAt: findComplain.createdAt,
-						session: findComplain.session,
-						title: findComplain.title,
-						description: findComplain.description,
-						upvote: findComplain.upvote,
-						downvote: findComplain.downvote,
-					},
-				});
-
-			const deleteFromComplain = await prisma.complains.delete({
-				where: { id: complainId },
-			});
-
-			return res.status(200).json({
-				error: false,
-				msg: "Success",
-				data: deleteFromComplain,
-			});
-		} catch (err: any) {
-			return res.status(400).json({ error: true, msg: err?.message });
-		}
 	});
+
+routes.delete("/:complainId1", async (req: Request, res: Response) => {
+	const { complainId1 } = req.params;
+	let complainId = parseInt(complainId1);
+
+	try {
+		const findComplain = await prisma.complains.findUnique({
+			where: { id: complainId },
+		});
+
+		const updateInDeletedComplain = await prisma.complainsDeleted.create({
+			data: {
+				createdAt: findComplain.createdAt,
+				session: findComplain.session,
+				title: findComplain.title,
+				description: findComplain.description,
+				upvote: findComplain.upvote,
+				downvote: findComplain.downvote,
+			},
+		});
+
+		const deleteFromComplain = await prisma.complains.delete({
+			where: { id: complainId },
+		});
+
+		return res.status(200).json({
+			error: false,
+			msg: "Success",
+			data: deleteFromComplain,
+		});
+	} catch (err: any) {
+		return res.status(400).json({ error: true, msg: err?.message });
+	}
+});
 
 export default routes;

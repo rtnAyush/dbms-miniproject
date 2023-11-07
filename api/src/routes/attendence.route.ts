@@ -14,6 +14,21 @@ const queue = [];
 
 const routes = Router();
 
+routes.get("/", async (req: Request, res: Response) => {
+	try {
+		const dailyCount = await prisma.dailyCount.findMany({});
+
+		return res.status(200).json({
+			error: false,
+			msg: "Success",
+			data: dailyCount,
+		});
+	} catch (err: any) {
+		console.log(err?.message);
+		return res.status(400).json({ error: true, msg: err?.message });
+	}
+});
+
 routes.post("/mark", async (req: Request, res: Response) => {
 	const { lat, lon } = req.body;
 	const userId = parseInt(req.body.userId) as number;
@@ -65,19 +80,6 @@ routes.post("/mark", async (req: Request, res: Response) => {
 	}
 });
 
-// routes.post("/mark", async (req: Request, res: Response) => {
-// 	const { userId } = req.body;
-// 	try {
-// 		queue.push({ userId, servingTime: new Date() });
-// 		res.status(200).json({
-// 			error: false,
-// 			msg: "Success",
-// 		});
-// 	} catch (error) {
-// 		console.error(error);
-// 		res.status(400).json({ error: true, msg: error });
-// 	}
-// });
 routes.get("/queue", async (req: Request, res: Response) => {
 	try {
 		// Schedule meal serving at a regular interval (e.g., every 3 minutes)

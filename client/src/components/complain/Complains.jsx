@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Complain from './Complain'
 import useAxios from '../../hooks/useAxios'
 import './complains.css';
-import { Button, Modal, Form } from 'react-bootstrap';
+import { Button, Modal, Form, Card, Placeholder } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ export default function Complains() {
     const [complains, setComplains] = useState([]);
     const [errMsg, setErrMsg] = useState(false);
     const [show, setShow] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const currUser = useSelector((state) => state?.user);
     // const userId = useSelector(state => state?.user?.userId);
@@ -29,10 +30,14 @@ export default function Complains() {
 
     async function getComplains(sort) {
         try {
+            setLoading(true);
             const res = await api.get(`/complains?sort=${sort}`);
             setComplains(res.data?.data);
         } catch (error) {
             console.error(error);
+            alert(error?.response?.data?.msg)
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -82,10 +87,27 @@ export default function Complains() {
                     </div>
                 </section>
                 {
-                    complains.map((complain, idx) => (
-                        <Complain key={idx} currUser={currUser} complain={complain} />
-                    ))
-                }
+                    !loading ?
+                        complains?.length !== 0 ?
+                            complains.map((complain, idx) => (
+                                <Complain key={idx} currUser={currUser} complain={complain} />
+                            ))
+                            :
+                            "No data found"
+                        :
+                        Array.from({ length: 5 }).map((_, idx) => (
+                            <Card className="complain" style={{ maxWidth: '900px', margin: '1rem auto', }}>
+                                <Card.Body>
+                                    <Placeholder as={Card.Title} animation="glow">
+                                        <Placeholder xs={6} />
+                                    </Placeholder>
+                                    <Placeholder as={Card.Text} animation="glow">
+                                        <Placeholder xs={6} /> <Placeholder xs={8} />
+                                    </Placeholder>
+                                    <Placeholder xs={3} /> <Placeholder xs={3} /> <Placeholder xs={3} /> <Placeholder xs={2} />
+                                </Card.Body>
+                            </Card>
+                        ))}
             </div>
             <Modal show={show} onHide={() => setShow(false)}>
                 <Modal.Header closeButton>

@@ -22,6 +22,12 @@ const profileData = [
         link: "/admin/menu",
         icon: "fa fa-cutlery",
         col: colors[1]
+    },
+    {
+        name: "View Daily Count",
+        link: "/admin/daily-count",
+        icon: "fa fa-book",
+        col: colors[2]
     }
 ]
 

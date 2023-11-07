@@ -17,6 +17,7 @@ import LoginPage from './components/login/LoginPage';
 
 import AddMenuItem from './components/admin/AddMenuItem';
 import Footer from './components/footer/Footer';
+import DailyCount from './components/daily-count/DailyCount';
 
 
 
@@ -50,6 +51,7 @@ function App() {
             <div className='container1'><AddMenuItem /></div>
           } />
           <Route path='/admin/users' element={<Users />} />
+          <Route path='/admin/daily-count' element={<DailyCount />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
