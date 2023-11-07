@@ -33,17 +33,27 @@
               "properties": {
                 "userId": {
                   "example": "any"
-                },
-                "lat": {
-                  "example": "any"
-                },
-                "lon": {
-                  "example": "any"
                 }
               }
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/attendence/queue": {
+      "get": {
+        "tags": [
+          "Attendence Routes"
+        ],
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"

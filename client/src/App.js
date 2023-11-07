@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
-import NotFound from './components/navbar/not-found/NotFound';
+import NotFound from './components/not-found/NotFound';
 import MainArea from './components/homepage/MainArea';
 import AttendenceMarker from './components/attendence-marker/AttendenceMarker';
 import Nav from './components/navbar/Nav';
@@ -30,47 +30,49 @@ function App() {
 
   useEffect(() => {
     if (!currUser) {
-      navigate('/login')
+      // navigate('/login')
     }
     // eslint-disable-next-line
   }, [currUser])
 
   return (
-    <div className="App">
+    <>
       {
         !location.pathname.includes("/login") &&
         <Nav />
       }
-      <Routes>
-        <Route path="/" element={
-          <>
-            <div className='dash-cont'>
-              <HomepageLogo />
-              <MainArea />
-            </div>
-          </>
-        } />
-        <Route path='/attendance' element={<AttendenceMarker />} />
-        <Route path='/complaints' element={<Complains />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/menu' element={<Menu />} />
+      <main>
+        <Routes>
+          <Route path="/" element={
+            <>
+              <div className='dash-cont'>
+                <HomepageLogo />
+                <MainArea />
+              </div>
+            </>
+          } />
+          <Route path='/attendance' element={<AttendenceMarker />} />
+          <Route path='/complaints' element={<Complains />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/menu' element={<Menu />} />
 
-        <Route path='/admin' element={<Admin />} />
-        <Route path='/admin/menu' element={
-          <div className='container1'><AddMenuItem /></div>
-        } />
-        <Route path='/admin/users' element={<Users />} />
+          <Route path='/admin' element={<Admin />} />
+          <Route path='/admin/menu' element={
+            <div className='container1'><AddMenuItem /></div>
+          } />
+          <Route path='/admin/users' element={<Users />} />
 
-        <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
 
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
       {
         !location.pathname.includes("/login") &&
         <Footer />
       }
-    </div>
+    </>
   );
 }
 
