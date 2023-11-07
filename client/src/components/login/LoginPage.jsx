@@ -1,7 +1,7 @@
 import { Form, Button } from 'react-bootstrap';
 import "./LoginPage.css"
 import SignInBtn from './SignInBtn';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAxios from '../../hooks/useAxios';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
@@ -44,9 +44,9 @@ const LoginPage = () => {
 
         <div className='login-page-main-cont'>
             <div className="login-cont">
-                <div className="img-logo-cont">
+                <Link to={'/'} className="img-logo-cont">
                     <img src="/logo192.png" alt="" srcset="" />
-                </div>
+                </Link>
                 <div className="heading text-center">
                     <h1>Welcome to Mess Buddy</h1>
                 </div>

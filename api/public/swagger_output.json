@@ -18,6 +18,22 @@
     "application/json"
   ],
   "paths": {
+    "/api/attendence/": {
+      "get": {
+        "tags": [
+          "Attendence Routes"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
     "/api/attendence/mark": {
       "post": {
         "tags": [
@@ -32,6 +48,12 @@
               "type": "object",
               "properties": {
                 "userId": {
+                  "example": "any"
+                },
+                "lat": {
+                  "example": "any"
+                },
+                "lon": {
                   "example": "any"
                 }
               }
