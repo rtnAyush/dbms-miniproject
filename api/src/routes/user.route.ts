@@ -1,4 +1,5 @@
 import { Router, Request, Response } from "express";
+const bcrypt = require("bcryptjs");
 import prisma from "../utils/prisma";
 
 const routes = Router();
@@ -71,6 +72,8 @@ routes.post("/login", async (req: Request, res: Response) => {
 
 routes.post("/admin-login", async (req: Request, res: Response) => {
 	const { email, password } = req.body;
+	
+	
 	try {
 		if (!password) throw new Error("name is Missing");
 		if (!email) throw new Error("email is Missing");
@@ -78,6 +81,38 @@ routes.post("/admin-login", async (req: Request, res: Response) => {
 		const user = await prisma.users.findUnique({
 			where: {
 				email: email as string,
+			},
+		});
+
+		if (!user) throw new Error("User does not exist");
+
+		const isMatch = await bcrypt.compare(password, user.password);
+		if (!isMatch) throw new Error("Invalid credentials");
+
+		return res
+			.status(200)
+			.json({ error: false, msg: "Success", data: user });
+	} catch (err: any) {
+		return res.status(400).json({ error: true, msg: err?.message });
+	}
+});
+
+routes.post("/create-admin", async (req: Request, res: Response) => {
+	const { name, email, password } = req.body;
+
+	try {
+		if (!name) throw new Error("name is Missing");
+		if (!email) throw new Error("email is Missing");
+		if (!password) throw new Error("password is Missing");
+
+		const hashPass = await bcrypt.hash(password, 10);
+
+		const user = await prisma.users.create({
+			data: {
+				name: name as string,
+				email: email as string,
+				password: hashPass,
+				role: "admin",
 			},
 		});
 

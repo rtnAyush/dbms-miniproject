@@ -5,7 +5,7 @@
     "description": "Description of your API",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "localhost:8081",
   "basePath": "/",
   "schemes": [
     "http",
@@ -32,6 +32,12 @@
               "type": "object",
               "properties": {
                 "userId": {
+                  "example": "any"
+                },
+                "lat": {
+                  "example": "any"
+                },
+                "lon": {
                   "example": "any"
                 }
               }
@@ -238,6 +244,42 @@
             "schema": {
               "type": "object",
               "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/users/create-admin": {
+      "post": {
+        "tags": [
+          "User Routes"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
                 "email": {
                   "example": "any"
                 },

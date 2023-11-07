@@ -88,7 +88,7 @@ routes
 					complainId: complainId,
 				},
 			});
-			console.log(alreadyVoted);
+			console.log("Already Voted: ",alreadyVoted);
 
 			let voted = false;
 			let delVoteId = 0;
@@ -96,7 +96,7 @@ routes
 				voted = true;
 				delVoteId = alreadyVoted.id;
 			}
-			console.log(delVoteId);
+			// console.log("Delete Vote Id: ",delVoteId);
 
 			if (!voted) {
 				const voterUpdate = await prisma.voteCalc.create({
@@ -141,7 +141,7 @@ routes
 				});
 			}
 
-			console.log(updateVal);
+			console.log("Update Value: ",updateVal);
 
 			const voteAdd = await prisma.complains.update({
 				where: {
