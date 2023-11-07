@@ -22,7 +22,6 @@ export default function AddMenuItem() {
         ["", "", "", ""],
     ]);
 
-    const navigate = useNavigate();
     const currUser = useSelector((state) => state?.user);
 
 

@@ -14,9 +14,6 @@ export default function Users() {
         rollNumber: "",
         email: ""
     }])
-
-    const navigate = useNavigate();
-
     const currUser = useSelector((state) => state?.user);
 
 
