@@ -3,6 +3,7 @@ import useAxios from '../../hooks/useAxios';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
+import AdminUnAuth from '../utils/AdminUnAuth';
 
 export default function Users() {
     const api = useAxios();
@@ -59,18 +60,13 @@ export default function Users() {
             loadTable(res.data.data);
         } catch (error) {
             console.log(error);
+            alert(error?.response?.data?.msg)
         }
     }
 
     return (
         currUser?.role !== 'admin' ?
-            <div className="d-flex justify-content-center align-items-center" style={{ height: '65vh' }}>
-                <div className="text-center">
-                    <h2>You are not authorized to view this page</h2>
-                    <Button onClick={() => navigate('/')} variant="primary" className='me-3'>Go to Home</Button>
-                    <Button onClick={() => navigate('/login', { state: { redirect: '/admin' } })} variant="secondary">Go to Login</Button>
-                </div>
-            </div>
+            <AdminUnAuth redirect={'/admin/users'} />
             :
             <div>
                 <table className="table">

@@ -1,9 +1,7 @@
 import './admin.css'
 import DashboardGridItem from '../homepage/dashboardGridItem';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import AdminUnAuth from '../utils/AdminUnAuth';
 
 const colors = [
     '#02db18',
@@ -28,29 +26,13 @@ const profileData = [
 ]
 
 export default function Admin() {
-
-    const navigate = useNavigate();
-
     const currUser = useSelector((state) => state?.user);
-
-    useEffect(() => {
-        if (!currUser) {
-            navigate('/login', { state: { redirect: '/admin' } })
-        }
-        // eslint-disable-next-line
-    }, [currUser])
 
 
 
     return (
         currUser?.role !== 'admin' ?
-            <div className="d-flex justify-content-center align-items-center" style={{ height: '65vh' }}>
-                <div className="text-center">
-                    <h2>You are not authorized to view this page</h2>
-                    <Button onClick={() => navigate('/')} variant="primary" className='me-3'>Go to Home</Button>
-                    <Button onClick={() => navigate('/login', { state: { redirect: '/admin' } })} variant="secondary">Go to Login</Button>
-                </div>
-            </div>
+            <AdminUnAuth redirect={'/admin'} />
             :
             <div className="main-container">
                 <div className="maincontent">
