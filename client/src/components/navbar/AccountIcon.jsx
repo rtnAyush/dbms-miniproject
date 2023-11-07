@@ -12,12 +12,12 @@ export default function AccountIcon() {
       {
         isLogged ?
           <>
-            <Dropdown>
-              <Dropdown.Toggle variant='light' id="dropdown-basic">
+            <Dropdown >
+              <Dropdown.Toggle variant='light' id="dropdown-basic" className='d-flex align-items-center gap-1'>
                 <div className="profile" ><img src={currUser?.profileImage} alt="" /></div>
               </Dropdown.Toggle>
 
-              <Dropdown.Menu>
+              <Dropdown.Menu className='text-center'>
                 <Dropdown.Item >{<LogoutBtn />}</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
