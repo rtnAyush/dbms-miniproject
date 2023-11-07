@@ -182,12 +182,105 @@
         }
       }
     },
+    "/api/users/login": {
+      "post": {
+        "tags": [
+          "User Routes"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/users/admin-login": {
+      "post": {
+        "tags": [
+          "User Routes"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
     "/api/complains/": {
       "get": {
         "tags": [
           "Complains Routes"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "userId1",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "upvote",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "downvote",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -209,7 +302,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "userId": {
+                "userId1": {
                   "example": "any"
                 },
                 "title": {
@@ -249,10 +342,10 @@
                 "vote": {
                   "example": "any"
                 },
-                "userId": {
+                "userId1": {
                   "example": "any"
                 },
-                "complainId": {
+                "complainId1": {
                   "example": "any"
                 }
               }

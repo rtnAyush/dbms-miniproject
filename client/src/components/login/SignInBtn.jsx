@@ -2,51 +2,80 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
 import useAxios from '../../hooks/useAxios';
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { setLogin } from '../../state';
+import { googleLogout } from '@react-oauth/google';
+import { useState } from 'react';
+import { Spinner } from 'react-bootstrap';
 
 
-const SignInBtn = (props) => {
+export default function SignInBtn() {
     const api = useAxios();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
 
-    const handleProfileData = (object) => {
-        localStorage.setItem("profileData", object.profileImage);
-        handleLogin(object.name, object.email);
-    }
-
-    async function handleLogin(name, email) {
+    async function handleLogin(googleObj) {
+        // console.log(googleObj);
         try {
             const body = {
-                name,
-                email
+                name: googleObj.name,
+                email: googleObj.email,
             }
             const res = await api.post('/users/login', body);
-            localStorage.setItem("userId", res?.data?.data?.id);
+            dispatch(setLogin({
+                user: {
+                    userId: res?.data?.data?.id,
+                    name: googleObj.name,
+                    email: googleObj.email,
+                    profileImage: googleObj?.picture,
+                    ...res?.data?.data
+                },
+                isLogged: true,
+            }))
             navigate("/");
         } catch (error) {
             console.error(error);
             alert(error?.response?.data?.msg)
+        } finally {
+            setLoading(false);
         }
     }
 
     return (
-        <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
-            <GoogleLogin
-                onSuccess={credentialResponse => {
-                    const decoded = jwtDecode(credentialResponse.credential);
-                    if (decoded.email_verified === false) return;
-                    // props.setLoggedIn(true)
-                    handleProfileData(decoded);
-                    localStorage.setItem("isLogged", true)
-                    console.log(decoded);
-                }}
-                onError={() => {
-                    console.log('Login Failed');
-                    alert('Google Login Failed')
-                }}
-            />
-        </GoogleOAuthProvider>
+        <>
+            <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
+                <GoogleLogin
+                    onSuccess={credentialResponse => {
+                        setLoading(true);
+                        const decoded = jwtDecode(credentialResponse.credential);
+                        if (decoded.email_verified === false) {
+                            setLoading(false);
+                            return;
+                        }
+                        if (decoded.email.split('@')[1] !== 'iiitt.ac.in') {
+                            alert('This is not vaild IIIT TRichy account!!!!');
+                            setLoading(false);
+                            googleLogout();
+                            return;
+                        }
+                        handleLogin(decoded);
+                    }}
+                    onError={() => {
+                        console.log('Login Failed');
+                        setLoading(false);
+                        alert('Google Login Failed')
+                    }}
+                />
+            </GoogleOAuthProvider>
+            {loading &&
+                <div className='my-4 text-center'>
+                    <Spinner />
+                    <p>Please wait while Authenticating... </p>
+                </div>
+            }
+        </>
     )
 }
 
-export default SignInBtn

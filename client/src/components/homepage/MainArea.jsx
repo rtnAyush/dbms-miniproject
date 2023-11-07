@@ -31,7 +31,7 @@ export default function Mainarea() {
     },
     {
       name: "Admin",
-      link: "/complaints",
+      link: "/admin",
       icon: "fa fa-user-secret",
       col: colors[3]
     },
@@ -46,8 +46,6 @@ export default function Mainarea() {
             ))
           }
         </div>
-
-
       </div>
     </div>
   );

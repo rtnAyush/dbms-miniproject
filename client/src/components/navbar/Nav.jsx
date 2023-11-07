@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Login from './Login'
 import "./nav.css"
+import AccountIcon from "./AccountIcon";
 
 
 export default function Nav() {
@@ -22,7 +22,9 @@ export default function Nav() {
                     </ul>
                 </div>
 
-                <span className="dropdown">{<Login />}</span>
+                <span className="dropdown">
+                    <AccountIcon />
+                </span>
             </nav>
         </div>
     )

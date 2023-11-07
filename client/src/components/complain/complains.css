@@ -1,0 +1,17 @@
+.complain .card-point {
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 1rem;
+    border-radius: 999px;
+    color: #292929;
+    font-size: .7rem;
+    font-weight: 600;
+    padding: 0.3rem 0.6rem;
+    text-transform: inherit;
+    white-space: nowrap;
+}
+
+.complain .vote:hover {
+    scale: 1.2;
+    cursor: pointer;
+}
