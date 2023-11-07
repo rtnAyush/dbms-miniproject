@@ -32,3 +32,21 @@
     font-size: 80px;
     padding: 10px;
 }
+
+@media screen and (max-width: 450px) {
+    .gridItemLeft i {
+        font-size: 60px;
+    }
+    .gridItemRight p {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .gridItemLeft i {
+        font-size: 50px;
+    }
+    .gridItemRight p {
+        font-size: 15px;
+    }
+}
