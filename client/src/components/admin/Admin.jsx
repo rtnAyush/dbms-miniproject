@@ -24,10 +24,6 @@ export default function Admin() {
         }
     ]
     return (
-<<<<<<< HEAD
-        <div className="container1">
-            <AddMenuItem />
-=======
         <div className="main-container">
             <div className="maincontent">
                 <div className="somegrid">
@@ -38,7 +34,6 @@ export default function Admin() {
                     }
                 </div>
             </div>
->>>>>>> 87d059232787c1415824748ffa1345c17b24e47b
         </div>
     );
 }

@@ -1,11 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Poppins:wght@200&display=swap');
+
 .login-page-cont{
     width: 400px;
     margin-inline: auto;
-    margin-top: 20px;
-    /* background-color: red; */
-    /* display: flex;
+}
+.img-logo-cont{
+    width: 100%;
+    display: flex;
     align-items: center;
-    justify-content: center; */
+    justify-content: center;
+}
+
+.img-logo-cont img{
+    width: 60px;
+    width: 257px;
+    height: 200px;
+    margin-top: -40px;
+    margin-bottom: -20px;
+}
+
+.login-cont{
+    padding: 50px 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-top-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    margin-top: -20px;
+}
+
+.signin-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-cont h3{
+    text-align: center;
+    
+}
+
+.heading{
+    margin-bottom: 40px;
+    border-bottom: 1px solid grey;
+    font-family: 'Agbalumo', sans-serif;
 }
 
 .login-page-main-cont{
