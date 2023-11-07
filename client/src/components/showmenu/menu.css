@@ -5,7 +5,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    min-width: 100vw;
+    /* min-width: 100vw; */
     min-height: 100vh;
     background: rgb(67,89,206);
     background: linear-gradient(30deg, rgba(67,89,206,1) 0%, rgba(187,81,194,1) 100%);
@@ -13,6 +13,7 @@
 
 .tablecontainer {
     padding: 20px;
+    width: 90%;
 }
 
 .table {
