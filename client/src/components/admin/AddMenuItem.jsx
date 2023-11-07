@@ -24,73 +24,73 @@ export default function AddMenuItem() {
         for (let i = 0; i < arr.length; i++) {
             if (arr[i].day === days[0]) {
                 if (arr[i].session === sessions[0]) {
-                    newTable[0][0] += ` ${arr[i].food.name}`;
+                    newTable[0][0] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[1]) {
-                    newTable[0][1] += ` ${arr[i].food.name}`;
+                    newTable[0][1] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[2]) {
-                    newTable[0][2] += ` ${arr[i].food.name}`;
+                    newTable[0][2] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[3]) {
-                    newTable[0][3] += ` ${arr[i].food.name}`;
+                    newTable[0][3] += ` ${arr[i].food.name},`;
                 }
             } else if (arr[i].day === days[1]) {
                 if (arr[i].session === sessions[0]) {
-                    newTable[1][0] += ` ${arr[i].food.name}`;
+                    newTable[1][0] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[1]) {
-                    newTable[1][1] += ` ${arr[i].food.name}`;
+                    newTable[1][1] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[2]) {
-                    newTable[1][2] += ` ${arr[i].food.name}`;
+                    newTable[1][2] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[3]) {
-                    newTable[1][3] += ` ${arr[i].food.name}`;
+                    newTable[1][3] += ` ${arr[i].food.name},`;
                 }
             } else if (arr[i].day === days[2]) {
                 if (arr[i].session === sessions[0]) {
-                    newTable[2][0] += ` ${arr[i].food.name}`;
+                    newTable[2][0] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[1]) {
-                    newTable[2][1] += ` ${arr[i].food.name}`;
+                    newTable[2][1] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[2]) {
-                    newTable[2][2] += ` ${arr[i].food.name}`;
+                    newTable[2][2] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[3]) {
-                    newTable[2][3] += ` ${arr[i].food.name}`;
+                    newTable[2][3] += ` ${arr[i].food.name},`;
                 }
             } else if (arr[i].day === days[3]) {
                 if (arr[i].session === sessions[0]) {
-                    newTable[3][0] += ` ${arr[i].food.name}`;
+                    newTable[3][0] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[1]) {
-                    newTable[3][1] += ` ${arr[i].food.name}`;
+                    newTable[3][1] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[2]) {
-                    newTable[3][2] += ` ${arr[i].food.name}`;
+                    newTable[3][2] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[3]) {
-                    newTable[3][3] += ` ${arr[i].food.name}`;
+                    newTable[3][3] += ` ${arr[i].food.name},`;
                 }
             } else if (arr[i].day === days[4]) {
                 if (arr[i].session === sessions[0]) {
-                    newTable[4][0] += ` ${arr[i].food.name}`;
+                    newTable[4][0] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[1]) {
-                    newTable[4][1] += ` ${arr[i].food.name}`;
+                    newTable[4][1] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[2]) {
-                    newTable[4][2] += ` ${arr[i].food.name}`;
+                    newTable[4][2] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[3]) {
-                    newTable[4][3] += ` ${arr[i].food.name}`;
+                    newTable[4][3] += ` ${arr[i].food.name},`;
                 }
             } else if (arr[i].day === days[5]) {
                 if (arr[i].session === sessions[0]) {
-                    newTable[5][0] += ` ${arr[i].food.name}`;
+                    newTable[5][0] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[1]) {
-                    newTable[5][1] += ` ${arr[i].food.name}`;
+                    newTable[5][1] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[2]) {
-                    newTable[5][2] += ` ${arr[i].food.name}`;
+                    newTable[5][2] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[3]) {
-                    newTable[5][3] += ` ${arr[i].food.name}`;
+                    newTable[5][3] += ` ${arr[i].food.name},`;
                 }
             } else if (arr[i].day === days[6]) {
                 if (arr[i].session === sessions[0]) {
-                    newTable[6][0] += ` ${arr[i].food.name}`;
+                    newTable[6][0] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[1]) {
-                    newTable[6][1] += ` ${arr[i].food.name}`;
+                    newTable[6][1] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[2]) {
-                    newTable[6][2] += ` ${arr[i].food.name}`;
+                    newTable[6][2] += ` ${arr[i].food.name},`;
                 } else if (arr[i].session === sessions[3]) {
-                    newTable[6][3] += ` ${arr[i].food.name}`;
+                    newTable[6][3] += ` ${arr[i].food.name},`;
                 }
             }
         }

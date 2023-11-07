@@ -20,13 +20,13 @@ export default function Menu() {
         let newMenu = [...menu];
         for(let i = 0; i < arr.length; i++) {
             if(arr[i].session === sessions[0]) {
-                newMenu[0] += ` ${arr[i].food.name}`;
+                newMenu[0] += ` ${arr[i].food.name},`;
             } else if(arr[i].session === sessions[1]) {
-                newMenu[1] += ` ${arr[i].food.name}`;
+                newMenu[1] += ` ${arr[i].food.name},`;
             } else if(arr[i].session === sessions[2]) {
-                newMenu[2] += ` ${arr[i].food.name}`;
+                newMenu[2] += ` ${arr[i].food.name},`;
             } else if(arr[i].session === sessions[3]) {
-                newMenu[3] += ` ${arr[i].food.name}`;
+                newMenu[3] += ` ${arr[i].food.name},`;
             }
         }
         setMenu(newMenu);
