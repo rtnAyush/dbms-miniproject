@@ -2,7 +2,7 @@
 
 export default function Footer() {
     return (
-        <footer className="bg-light text-dark p-5 shadow mt-5">
+        <footer className="bg-light text-dark p-5 shadow">
             <div className="d-flex justify-content-center">
                 <div className="text-center">
                     <p>Made with <i className="fa fa-heart text-danger" /> by <span className="cursor-pointer">Team Mess Buddy</span></p>
