@@ -8,7 +8,7 @@ import { googleLogout } from '@react-oauth/google';
 import { Spinner } from 'react-bootstrap';
 
 
-export default function SignInBtn({ location, loading, setLoading }) {
+export default function SignInBtn({ location, loading, setLoading, type }) {
     const api = useAxios();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -49,6 +49,7 @@ export default function SignInBtn({ location, loading, setLoading }) {
                     shape='pill'
                     width={300}
                     theme='filled_blue'
+                    type={type}
                     onSuccess={credentialResponse => {
                         setLoading(true);
                         const decoded = jwtDecode(credentialResponse.credential);
