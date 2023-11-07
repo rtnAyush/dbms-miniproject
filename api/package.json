@@ -8,7 +8,11 @@
     "build": "npm i . && tsc && npm run swagger",
     "dev": "nodemon src/index.ts",
     "swagger": "node src/utils/swaggerAutogen.ts",
+<<<<<<< HEAD
     "erdia": "npx prisma generate"
+=======
+    "erdia":"npx prisma generate"
+>>>>>>> 51a6c66f246eb4140be98c61eeea7b3f896595ce
   },
   "keywords": [],
   "author": "",
