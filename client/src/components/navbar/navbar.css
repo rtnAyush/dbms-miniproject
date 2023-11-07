@@ -1,7 +1,7 @@
 .nav-container {
     width: 20%;
     background: #f1f1f1;
-    min-height: 100vh;
+    /* min-height: 100vh; */
 }
 
 .logo {

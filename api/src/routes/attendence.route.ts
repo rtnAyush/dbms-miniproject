@@ -10,6 +10,8 @@ import {
 } from "../controller/routes.controller";
 import prisma from "../utils/prisma";
 
+const queue = [];
+
 const routes = Router();
 
 routes.post("/mark", async (req: Request, res: Response) => {
@@ -18,8 +20,7 @@ routes.post("/mark", async (req: Request, res: Response) => {
 	try {
 		if (!lat || !lon) throw new Error("Missing lat or lon");
 		if (!userId) throw new Error("Missing userId");
-		// if (!isMessTime()) throw new Error("Not Mess Time");
-
+		if (!isMessTime()) throw new Error("Not Mess Time");
 
 		const dist = getDistance({
 			lat1: parseFloat(process.env.MESS_LAT) as number,
@@ -50,6 +51,8 @@ routes.post("/mark", async (req: Request, res: Response) => {
 			data: { lastAttendence: date.toISOString() },
 		});
 
+		queue.push({ userId, servingTime: new Date() });
+
 		return res.status(200).json({
 			error: false,
 			msg: "Success",
@@ -62,4 +65,37 @@ routes.post("/mark", async (req: Request, res: Response) => {
 	}
 });
 
+// routes.post("/mark", async (req: Request, res: Response) => {
+// 	const { userId } = req.body;
+// 	try {
+// 		queue.push({ userId, servingTime: new Date() });
+// 		res.status(200).json({
+// 			error: false,
+// 			msg: "Success",
+// 		});
+// 	} catch (error) {
+// 		console.error(error);
+// 		res.status(400).json({ error: true, msg: error });
+// 	}
+// });
+routes.get("/queue", async (req: Request, res: Response) => {
+	try {
+		// Schedule meal serving at a regular interval (e.g., every 3 minutes)
+		setInterval(serveMeal, 1 * 60 * 1000);
+		res.status(200).json({
+			error: false,
+			msg: "Success",
+			data: queue?.length,
+		});
+	} catch (error) {
+		console.error(error);
+		res.status(400).json({ error: true, msg: error });
+	}
+});
+
+const serveMeal = () => {
+	if (queue.length === 0) return;
+	const servedUser = queue.shift();
+	console.log(`Serving user ${servedUser.userId}`);
+};
 export default routes;
