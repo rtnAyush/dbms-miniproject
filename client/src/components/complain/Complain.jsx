@@ -42,6 +42,7 @@ export default function Complain({ complain, currUser }) {
     // }
 
 
+
     return (
         <Card className="complain" style={{ maxWidth: '900px', margin: '1rem auto', }}>
             <Card.Body >
