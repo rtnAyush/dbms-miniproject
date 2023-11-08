@@ -1,22 +1,35 @@
 .menuContainer {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    /* box-sizing: border-box; */
+    /* margin: 0;
+    padding: 0; */
     width: 100%;
-    min-height: 100vh;
-    background: rgb(67,89,206);
-    background: linear-gradient(30deg, rgba(67,89,206,1) 0%, rgba(187,81,194,1) 100%);
+    min-height: 65vh;
+    background: rgb(67, 89, 206);
+    background: linear-gradient(30deg, rgba(67, 89, 206, 1) 0%, rgba(187, 81, 194, 1) 100%);
 }
 
+.food-item {
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 1rem;
+    border-radius: 999px;
+    color: #292929;
+    font-size: .7rem;
+    font-weight: 500;
+    padding: 0.3rem 0.6rem;
+    text-transform: inherit;
+    font-family: poppins;
+    /* white-space: nowrap; */
+}
 
-.tableContainer {
+/* .tableContainer {
     width: 90%;
     max-width: 100vw;
-}
+} */
 
 .table {
-    width: 90%;
-    border-radius: 10px;
+    /* width: 90%; */
+    border-radius: 8px;
 }
 
 table {
@@ -28,19 +41,20 @@ table {
 
 }
 
-.table {
+/* .table {
     font-family: Arial, Helvetica, sans-serif;
-}
+} */
 
 .dateHeader {
     text-align: center;
 }
 
-.date{
-    margin :20px;
+.date {
+    margin: 20px;
 }
 
-.table td, .table th{
+.table td,
+.table th {
     min-width: 200px;
     padding: 8px 20px;
     text-align: center;

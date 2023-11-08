@@ -45,7 +45,7 @@ const LoginPage = () => {
         <div className='login-page-main-cont'>
             <div className="login-cont">
                 <Link to={'/'} className="img-logo-cont">
-                    <img src="/logo192.png" alt="" srcset="" />
+                    <img src="/logo192.png" alt="" />
                 </Link>
                 <div className="heading text-center">
                     <h1>Welcome to Mess Buddy</h1>
