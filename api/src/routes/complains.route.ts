@@ -139,6 +139,13 @@ routes
 				const deleteVote = await prisma.voteCalc.delete({
 					where: { id: delVoteId },
 				});
+				const addVote = await prisma.voteCalc.create({
+					data: {
+						vote: vote,
+						voterId: alreadyVoted.voterId,
+						complainId: alreadyVoted.complainId,
+					}
+				})
 			}
 
 			console.log("Update Value: ", updateVal);
