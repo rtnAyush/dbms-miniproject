@@ -32,6 +32,7 @@ export default function Complain({ complain, currUser }) {
             navigate('/login', { state: { redirect: '/complaints' } });
             return;
         }
+
         try {
             await api.delete(`/complains/${complain?.id}`);
             window.location.reload();
