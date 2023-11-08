@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, Modal, Table } from "react-bootstrap";
 import useAxios from "../../hooks/useAxios";
 import { useSelector } from "react-redux";
 import AdminUnAuth from "../utils/AdminUnAuth";
@@ -12,13 +12,13 @@ export default function AddMenuItem() {
     const sessions = ["breakfast", "lunch", "snack", "dinner"];
     const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
     const [tabledata, setTable] = useState([
-        ["", "", "", ""],
-        ["", "", "", ""],
-        ["", "", "", ""],
-        ["", "", "", ""],
-        ["", "", "", ""],
-        ["", "", "", ""],
-        ["", "", "", ""],
+        [[], [], [], []],
+        [[], [], [], []],
+        [[], [], [], []],
+        [[], [], [], []],
+        [[], [], [], []],
+        [[], [], [], []],
+        [[], [], [], []],
     ]);
 
     const currUser = useSelector((state) => state?.user);
@@ -29,79 +29,89 @@ export default function AddMenuItem() {
         for (let i = 0; i < arr.length; i++) {
             if (arr[i].day === days[0]) {
                 if (arr[i].session === sessions[0]) {
-                    newTable[0][0] += ` ${arr[i].food.name},`;
+                    newTable[0][0].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[1]) {
-                    newTable[0][1] += ` ${arr[i].food.name},`;
+                    newTable[0][1].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[2]) {
-                    newTable[0][2] += ` ${arr[i].food.name},`;
+                    newTable[0][2].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[3]) {
-                    newTable[0][3] += ` ${arr[i].food.name},`;
+                    newTable[0][3].push(arr[i].food.name);
                 }
             } else if (arr[i].day === days[1]) {
                 if (arr[i].session === sessions[0]) {
-                    newTable[1][0] += ` ${arr[i].food.name},`;
+                    newTable[1][0].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[1]) {
-                    newTable[1][1] += ` ${arr[i].food.name},`;
+                    newTable[1][1].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[2]) {
-                    newTable[1][2] += ` ${arr[i].food.name},`;
+                    newTable[1][2].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[3]) {
-                    newTable[1][3] += ` ${arr[i].food.name},`;
+                    newTable[1][3].push(arr[i].food.name);
                 }
             } else if (arr[i].day === days[2]) {
                 if (arr[i].session === sessions[0]) {
-                    newTable[2][0] += ` ${arr[i].food.name},`;
+                    newTable[2][0].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[1]) {
-                    newTable[2][1] += ` ${arr[i].food.name},`;
+                    newTable[2][1].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[2]) {
-                    newTable[2][2] += ` ${arr[i].food.name},`;
+                    newTable[2][2].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[3]) {
-                    newTable[2][3] += ` ${arr[i].food.name},`;
+                    newTable[2][3].push(arr[i].food.name);
                 }
             } else if (arr[i].day === days[3]) {
                 if (arr[i].session === sessions[0]) {
-                    newTable[3][0] += ` ${arr[i].food.name},`;
+                    newTable[3][0].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[1]) {
-                    newTable[3][1] += ` ${arr[i].food.name},`;
+                    newTable[3][1].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[2]) {
-                    newTable[3][2] += ` ${arr[i].food.name},`;
+                    newTable[3][2].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[3]) {
-                    newTable[3][3] += ` ${arr[i].food.name},`;
+                    newTable[3][3].push(arr[i].food.name);
                 }
             } else if (arr[i].day === days[4]) {
                 if (arr[i].session === sessions[0]) {
-                    newTable[4][0] += ` ${arr[i].food.name},`;
+                    newTable[4][0].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[1]) {
-                    newTable[4][1] += ` ${arr[i].food.name},`;
+                    newTable[4][1].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[2]) {
-                    newTable[4][2] += ` ${arr[i].food.name},`;
+                    newTable[4][2].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[3]) {
-                    newTable[4][3] += ` ${arr[i].food.name},`;
+                    newTable[4][3].push(arr[i].food.name);
                 }
             } else if (arr[i].day === days[5]) {
                 if (arr[i].session === sessions[0]) {
-                    newTable[5][0] += ` ${arr[i].food.name},`;
+                    newTable[5][0].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[1]) {
-                    newTable[5][1] += ` ${arr[i].food.name},`;
+                    newTable[5][1].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[2]) {
-                    newTable[5][2] += ` ${arr[i].food.name},`;
+                    newTable[5][2].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[3]) {
-                    newTable[5][3] += ` ${arr[i].food.name},`;
+                    newTable[5][3].push(arr[i].food.name);
                 }
             } else if (arr[i].day === days[6]) {
                 if (arr[i].session === sessions[0]) {
-                    newTable[6][0] += ` ${arr[i].food.name},`;
+                    newTable[6][0].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[1]) {
-                    newTable[6][1] += ` ${arr[i].food.name},`;
+                    newTable[6][1].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[2]) {
-                    newTable[6][2] += ` ${arr[i].food.name},`;
+                    newTable[6][2].push(arr[i].food.name);
                 } else if (arr[i].session === sessions[3]) {
-                    newTable[6][3] += ` ${arr[i].food.name},`;
+                    newTable[6][3].push(arr[i].food.name);
                 }
             }
         }
         setTable(newTable);
     }
 
+    async function handleDelete({ day, session, name }) {
+        try {
+            const res = await api.delete(`/menu/day/${day}/session/${session}/name/${name}`);
+            console.log(res.data);
+            window.location.reload();
+        } catch (error) {
+            console.error(error)
+            alert(error.response.data ? error.response.data.msg : "something went wrong");
+        }
+    }
     function CreateTable() {
         return (
             <>
@@ -109,9 +119,23 @@ export default function AddMenuItem() {
                     return (
                         <tr key={i}>
                             <td key={`${i}5`}>{days[i]}</td>
-                            {c.map((el, j) => {
+                            {c.map((items, j) => {
                                 return (
-                                    <td key={`${i}${j}`}>{el}</td>
+                                    <td key={`${i}${j}`}>
+                                        <div className='d-flex flex-wrap gap-1'>
+                                            {
+                                                items.map((item, k) => {
+                                                    return (
+                                                        <span
+                                                            onClick={() => handleDelete({ day: days[i], session: sessions[j], name: item })}
+                                                            className='food-item' key={`${i}${j}${k}`}>
+                                                            {item}
+                                                        </span>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    </td>
                                 )
                             }
                             )}
@@ -208,7 +232,7 @@ export default function AddMenuItem() {
                 </Modal>
                 <div className="table2">
                     <div className="tablecontainer2">
-                        <table className="table3">
+                        <Table className="table3">
                             <thead>
                                 <tr>
                                     <th>Day</th>
@@ -221,7 +245,7 @@ export default function AddMenuItem() {
                             <tbody className='tb'>
                                 <CreateTable />
                             </tbody>
-                        </table>
+                        </Table>
                     </div>
                 </div>
             </>

@@ -27,15 +27,20 @@ export default function Complain({ complain, currUser }) {
         }
     }
 
-    async function handleDelete() {
-        try {
-            await api.delete(`/complains/${complain?.id}`);
-            window.location.reload();
-        } catch (error) {
-            console.error(error);
-            alert(error?.response?.data?.msg);
-        }
-    }
+    // async function handleDelete() {
+    //     if (!currUser) {
+    //         navigate('/login', { state: { redirect: '/complaints' } });
+    //         return;
+    //     }
+    //     try {
+    //         await api.delete(`/complains/${complain?.id}`);
+    //         window.location.reload();
+    //     } catch (error) {
+    //         console.error(error);
+    //         alert(error?.response?.data?.msg);
+    //     }
+    // }
+
 
 
     return (
@@ -45,7 +50,7 @@ export default function Complain({ complain, currUser }) {
                     {complain?.title}
                     <div>
                         <Card.Link className="card-point d-md-none">{complain?.author?.name}</Card.Link>
-                        {currUser?.id === complain?.authorId && <Button variant="danger" size="sm" onClick={handleDelete} className="">Delete</Button>}
+                        {/* {currUser?.id === complain?.authorId && <Button variant="danger" size="sm" onClick={handleDelete} className="">Delete</Button>} */}
                     </div>
                 </Card.Title>
                 <Card.Text>

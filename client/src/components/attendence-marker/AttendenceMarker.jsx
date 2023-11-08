@@ -53,7 +53,7 @@ export default function AttendenceMarker() {
         } catch (error) {
             if (error) {
                 setGif('/assets/sad.gif')
-                setMsg(<h3>Something went wrong</h3>)
+                setMsg(error?.response?.data ? <h3>{error?.response?.data?.msg}</h3> : <h3>Something went wrong</h3>)
                 console.log(location)
             }
             console.log(error?.response?.data);

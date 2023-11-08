@@ -75,8 +75,11 @@ routes
 		} catch (err: any) {
 			return res.status(400).json({ error: true, msg: err?.message });
 		}
-	})
-	.delete(async (req: Request, res: Response) => {
+	});
+
+routes.delete(
+	"/day/:day/session/:session/name/:name",
+	async (req: Request, res: Response) => {
 		const { day, session, name } = req.params;
 		try {
 			if (!day) throw new Error("Missing Day");
@@ -107,6 +110,7 @@ routes
 		} catch (err: any) {
 			return res.status(400).json({ error: true, msg: err?.message });
 		}
-	});
+	}
+);
 
 export default routes;

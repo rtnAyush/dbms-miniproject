@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import './menu.css'
 import useAxios from '../../hooks/useAxios';
+import { Table } from 'react-bootstrap';
 
 export default function Menu() {
     const today = new Date();
@@ -9,7 +10,8 @@ export default function Menu() {
     const api = useAxios();
     const sessions = ["breakfast", "lunch", "snack", "dinner"];
 
-    const [menu, setMenu] = useState(["", "", "", ""]);
+    const [menu, setMenu] = useState([[], [], [], []]);
+    const [loading, setLoading] = useState(false);
 
     function dateData() {
         let returnVal = `${today.getDate()}/${today.getMonth()}/${today.getFullYear()}`;
@@ -18,31 +20,42 @@ export default function Menu() {
 
     function loadTable(arr) {
         let newMenu = [...menu];
-        for(let i = 0; i < arr.length; i++) {
-            if(arr[i].session === sessions[0]) {
-                newMenu[0] += ` ${arr[i].food.name},`;
-            } else if(arr[i].session === sessions[1]) {
-                newMenu[1] += ` ${arr[i].food.name},`;
-            } else if(arr[i].session === sessions[2]) {
-                newMenu[2] += ` ${arr[i].food.name},`;
-            } else if(arr[i].session === sessions[3]) {
-                newMenu[3] += ` ${arr[i].food.name},`;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].session === sessions[0]) {
+                newMenu[0].push(arr[i].food.name);
+            } else if (arr[i].session === sessions[1]) {
+                newMenu[1].push(arr[i].food.name);
+            } else if (arr[i].session === sessions[2]) {
+                newMenu[2].push(arr[i].food.name);
+            } else if (arr[i].session === sessions[3]) {
+                newMenu[3].push(arr[i].food.name);
             }
         }
         setMenu(newMenu);
     }
 
+
     function CreateMenu() {
         return (
             <>
-            {menu.map((c, i) => {
-                return (
-                    <td key={i}>
-                        {c}
-                    </td>
-                )
-            }
-            )}
+                {menu.map((items, i) => {
+                    return (
+                        <td key={i}>
+                            <div className='d-flex flex-wrap gap-1'>
+                                {
+                                    items.map((item, j) => {
+                                        return (
+                                            <span className='food-item' key={j}>
+                                                {item}
+                                            </span>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </td>
+                    )
+                }
+                )}
             </>
         )
     }
@@ -54,40 +67,43 @@ export default function Menu() {
 
     async function fetchData() {
         try {
+            setLoading(true);
             const res = await api.get(`/menu?day=${day}`);
-            console.log(res.data);
             loadTable(res.data.data);
         } catch (error) {
-            console.log(error);
+            console.error(error);
+            alert(error?.response?.data ? error?.response?.data.msg : "something went wrong");
+        } finally {
+            setLoading(false);
         }
     }
 
-  return (
-    <div className="menuContainer">
-        <div className="tablecontainer">
-            <h1 className="dateHeader">
-                MENU <br />
-                <div className="date">
-                    {dateData()}
-                </div>
-                <br />
-            </h1>
-            <table className="table">
-                <thead>
-                <tr>
-                    <th>Breakfast</th>
-                    <th>Lunch</th>
-                    <th>Snacks</th>
-                    <th>Dinner</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr className='bd'>
-                    <CreateMenu />
-                </tr>
-                </tbody>
-            </table> 
+    return (
+        <div className="menuContainer">
+            <div className="container">
+                <h1 className="dateHeader">
+                    MENU <br />
+                    <div className="date">
+                        {dateData()}
+                    </div>
+                    <br />
+                </h1>
+                <Table className="table" hover responsive>
+                    <thead>
+                        <tr>
+                            <th>Breakfast</th>
+                            <th>Lunch</th>
+                            <th>Snacks</th>
+                            <th>Dinner</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr className='bd'>
+                            <CreateMenu />
+                        </tr>
+                    </tbody>
+                </Table>
+            </div>
         </div>
-    </div>
-  )
+    )
 }
