@@ -10,7 +10,6 @@ export default function AccountIcon() {
   const currUser = useSelector(state => state?.user);
   const navigate = useNavigate();
 
-
   return (
     isLogged ?
       <>
@@ -36,6 +35,5 @@ export default function AccountIcon() {
       <Button variant='light' onClick={() => navigate('/login')} className='border'>
         Login
       </Button>
-
   );
 }
