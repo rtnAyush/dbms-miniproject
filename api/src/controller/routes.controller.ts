@@ -44,6 +44,30 @@ export function getMessCategory(prevSavedTime: Date): boolean {
 	}
 	return false;
 }
+
+export function whichMessCategory(prevSavedTime: Date): string {
+	const currTime = moment().format("HH:mm:ss");
+	const prevSavedTimeStr = moment(prevSavedTime).format("HH:mm:ss");
+	if (currTime >= "07:30:00" && currTime <= "09:30:00") {
+		if (prevSavedTimeStr >= "07:30:00" && prevSavedTimeStr <= "09:30:00") {
+			return "breakfast";
+		}
+	} else if (currTime >= "12:30:00" && currTime <= "14:00:00") {
+		if (prevSavedTimeStr >= "12:30:00" && prevSavedTimeStr <= "14:00:00") {
+			return "lunch";
+		}
+	} else if (currTime >= "17:00:00" && currTime <= "18:00:00") {
+		if (prevSavedTimeStr >= "17:00:00" && prevSavedTimeStr <= "18:00:00") {
+			return "snack";
+		}
+	} else if (currTime >= "19:30:00" && currTime <= "21:00:00") {
+		if (prevSavedTimeStr >= "19:30:00" && prevSavedTimeStr <= "21:00:00") {
+			return "dinner";
+		}
+	}
+	return "none";
+}
+
 export function isMessTime(): boolean {
 	const currTime = moment().format("HH:mm:ss");
 
