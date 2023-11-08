@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './menu.css'
 import useAxios from '../../hooks/useAxios';
-import { Table } from 'react-bootstrap';
+import { Placeholder, Table } from 'react-bootstrap';
 
 export default function Menu() {
     const today = new Date();
@@ -99,7 +99,25 @@ export default function Menu() {
                     </thead>
                     <tbody>
                         <tr className='bd'>
-                            <CreateMenu />
+                            {
+                                !loading ?
+                                    <CreateMenu />
+                                    :
+                                    <>
+                                        <Placeholder as={'td'} animation="glow">
+                                            <Placeholder xs={12} />
+                                        </Placeholder>
+                                        <Placeholder as={'td'} animation="glow">
+                                            <Placeholder xs={12} />
+                                        </Placeholder>
+                                        <Placeholder as={'td'} animation="glow">
+                                            <Placeholder xs={12} />
+                                        </Placeholder>
+                                        <Placeholder as={'td'} animation="glow">
+                                            <Placeholder xs={12} />
+                                        </Placeholder>
+                                    </>
+                            }
                         </tr>
                     </tbody>
                 </Table>
