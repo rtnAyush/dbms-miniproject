@@ -15,10 +15,9 @@ const formattedDate = new Intl.DateTimeFormat('en-US', options).format(new Date(
 
 export default function AttendenceMarker() {
 
-    const location = useGeoLocation();
     const [show, setShow] = useState(false);
     const [msg, setMsg] = useState(<h3>Collecting Info...</h3>);
-    const [gif, setGif] = useState('/assets/happy.gif')
+    const [gif, setGif] = useState('/assets/wait-panda.gif')
     const api = useAxios();
     const navigate = useNavigate();
 
@@ -31,8 +30,16 @@ export default function AttendenceMarker() {
         // eslint-disable-next-line
     }, [currUser])
 
+    const location = useGeoLocation();
+
     async function handleAttendence() {
         setShow(true);
+
+        if (!currUser?.rollNumber) {
+            alert('You are not a student!!');
+            setShow(false);
+            return;
+        }
 
         if (!location.loaded) {
             alert('Please allow the location');
@@ -43,7 +50,7 @@ export default function AttendenceMarker() {
             const body = {
                 lat: location.coordinates.lat,
                 lon: location.coordinates.lng,
-                userId: 1,
+                userId: currUser?.id,
             }
             const res = await api.post('/attendence/mark', body);
             console.log('222', res);
