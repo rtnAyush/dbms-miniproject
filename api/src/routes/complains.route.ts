@@ -144,8 +144,8 @@ routes
 						vote: vote,
 						voterId: alreadyVoted.voterId,
 						complainId: alreadyVoted.complainId,
-					}
-				})
+					},
+				});
 			}
 
 			console.log("Update Value: ", updateVal);
@@ -197,6 +197,36 @@ routes.delete("/:complainId1", async (req: Request, res: Response) => {
 		});
 	} catch (err: any) {
 		return res.status(400).json({ error: true, msg: err?.message });
+	}
+});
+
+routes.get("/who-voted", async (req: Request, res: Response) => {
+	const { complainId } = req.query;
+
+	try {
+		const whoVoted = await prisma.voteCalc.findMany({
+			where: {
+				complainId: parseInt(complainId as string),
+			},
+		});
+		console.log(whoVoted);
+
+		const whoVotedUp: number[] = [];
+		const whoVotedDown: number[] = [];
+		for (let i = 0; i < whoVoted.length; i++) {
+			if (whoVoted[i].vote == "up") {
+				whoVotedUp.push(whoVoted[i].voterId);
+			} else if (whoVoted[i].vote == "down") {
+				whoVotedDown.push(whoVoted[i].voterId);
+			}
+		}
+		return res.status(200).json({
+			error: false,
+			msg: "Success",
+			data: { complainId, whoVotedUp, whoVotedDown },
+		});
+	} catch (error) {
+		return res.status(400).json({ error: true, msg: error?.message });
 	}
 });
 

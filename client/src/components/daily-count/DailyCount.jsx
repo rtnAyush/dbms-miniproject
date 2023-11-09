@@ -32,7 +32,7 @@ export default function DailyCount() {
         currUser?.role !== 'admin' ?
             <AdminUnAuth redirect={'/admin/daily-count'} />
             :
-            <Table striped bordered hover>
+            <Table striped bordered hover className='mt-5'>
                 <thead>
                     <tr>
                         <th>id</th>

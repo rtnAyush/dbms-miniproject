@@ -14,6 +14,7 @@ export default function Complains() {
     const [errMsg, setErrMsg] = useState(false);
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [refresh, setRefresh] = useState(0);
 
     const currUser = useSelector((state) => state?.user);
     // const userId = useSelector(state => state?.user?.userId);
@@ -24,7 +25,7 @@ export default function Complains() {
     useEffect(() => {
         getComplains(sort);
         // eslint-disable-next-line
-    }, [sort]);
+    }, [sort, refresh]);
 
 
 
@@ -90,7 +91,7 @@ export default function Complains() {
                     !loading ?
                         complains?.length !== 0 ?
                             complains.map((complain, idx) => (
-                                <Complain key={idx} currUser={currUser} complain={complain} />
+                                <Complain key={idx} setRefresh={setRefresh} currUser={currUser} complain={complain} />
                             ))
                             :
                             "No data found"

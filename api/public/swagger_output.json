@@ -146,12 +146,34 @@
             "description": "Bad Request"
           }
         }
-      },
+      }
+    },
+    "/api/menu/day/{day}/session/{session}/name/{name}": {
       "delete": {
         "tags": [
           "Menu Routes"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "day",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "session",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -428,12 +450,45 @@
             "description": "Bad Request"
           }
         }
-      },
+      }
+    },
+    "/api/complains/{complainId1}": {
       "delete": {
         "tags": [
           "Complains Routes"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "complainId1",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/complains/who-voted": {
+      "get": {
+        "tags": [
+          "Complains Routes"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "complainId",
+            "in": "query",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

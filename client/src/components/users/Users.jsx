@@ -64,7 +64,7 @@ export default function Users() {
             <AdminUnAuth redirect={'/admin/users'} />
             :
             <div>
-                <table className="table">
+                <table className="table mt-5">
                     <thead>
                         <tr>
                             <th>Id</th>
